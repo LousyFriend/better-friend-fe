@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { GoogleLogout } from 'react-google-login';
 import GoogleLogin from 'react-google-login';
 
 
@@ -13,11 +12,12 @@ export default class Login extends Component {
       return (
         <div>
           <GoogleLogin 
-            clientId=''
+            clientId='700191719998-4ehio8jd3oqho8pv4kfevr7ofjgq6akb.apps.googleusercontent.com'
             buttonText='Login'
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             cookiePolicy={'single_host_origin'}
+            scope={'https://www.googleapis.com/auth/calendar'}
           />     
          
         </div>
