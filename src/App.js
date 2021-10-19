@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
   NavLink,
-  Link,
   Redirect
 } from 'react-router-dom';
 import './App.css';
