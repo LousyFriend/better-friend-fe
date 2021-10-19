@@ -8,24 +8,17 @@ export default class Login extends Component {
       email: ''
     }
      responseGoogle= async (response)=> {
-       console.log(response);
-      //  console.log(response.profileObj.email);
-      //  console.log(response.profileObj.googleId);
        const oauthGoogle = response.tokenObj.access_token; 
        this.props.handleState({ oauthGoogle:oauthGoogle });
        await this.setState({ email: response.profileObj.email, password:response.profileObj.googleId });
-       console.log(this.state.email, this.state.password);
        await this.makeToken();
-
-       console.log('-------------------^^^^^^^^^^');
-       console.log('Oath token', oauthGoogle);
-       console.log('-------------------^^^^^^^^^^^^');
      }
      makeToken= async () => {  
        const email = await this.state.email;
        const password = await this.state.password;
        const token = await login(email, password);
-       await this.props.handleTokenChange(token); }
+       await this.props.handleTokenChange(token);
+       this.props.history.push('/contacts'); }
 
      render() {
        return (
