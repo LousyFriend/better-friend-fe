@@ -7,4 +7,9 @@
 main {
   background: #FAF0EA;
 }
+.links {
+  padding: 15px;
+  margin: 15px;
+  display: flex;
+}
 

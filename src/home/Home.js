@@ -1,15 +1,17 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Home.css';
-
+import { Link } from 'react-router-dom';
 export default class Home extends Component {
   
   render() {
     return (
       <div className="Home">
-        <h2>Home Page</h2>
-
-        <Link to='/resources'>See the List</Link>
+        <Link
+          exact className='links'
+          activeStyle={{ fontSize:'1.5rem' }}
+          to='/login'> Login or Signup
+        </Link>
       </div>
     );
   }
