@@ -12,24 +12,38 @@ import Login from './login/Login.js';
 import Contacts from './contacts/Contacts.js';
 import DetailsPage from './details-page/DetailsPage.js';
 import CreatePage from './create-page/CreatePage.js';
+// import { login } from './fetch-utils';
 const TOKEN = 'TOKEN';
 
 export default class App extends Component {
 state = {
-  token: localStorage.getItem(TOKEN) || '',
-  oauthGooogle: ''
-
+  token: '',
+  oauthGoogle: ''
 }
+
+handleState = (oauthGoogle) => {
+  this.setState({ oauthGoogle: oauthGoogle });
+  // , email: email, password: password
+} 
 handleTokenChange = async (token) => {
   localStorage.setItem(TOKEN, token);
-  this.setState({ token: token });
-  
+  await this.setState({ token: token });
+  console.log('slkdjflkdsjfk');
 }
+// createLogin = (email, password) => {
+//   const { token } = login(email, password);
+//   console.log(token);
 
-handleOauth = async (oauthGoogle) => {
-  this.setState({ oauthGooogle: oauthGoogle });
-}
+// createLocalToken = () => {
+//   // const token = login(this.state.email, this.state.password);
+//   localStorage.setItem(TOKEN, token);
+//   console.log(token);
+//   this.setState(token);
+// }
+
+
 render() {
+  console.log(this.state.oauthGoogle, this.state.token);
   return (
     <div className="App">
       <Router>
@@ -42,7 +56,7 @@ render() {
           <NavLink
             exact className='links'
             activeStyle={{ fontSize:'1.5rem' }}
-            to='/login'>Login
+            to='/login'>!
           </NavLink>
           {this.state.token && <button onClick={this.logout}>Logout</button>}
         </header>
@@ -54,7 +68,7 @@ render() {
           />
           <Route path="/login" exact={true}
             render={routerProps => (
-              <Login handleTokenChange={this.handleTokenChange} handleOauth={this.handleOauth} {...routerProps}/>
+              <Login handleState={this.handleState} handleTokenChange={this.handleTokenChange} {...routerProps}/>
             )}
           />
           <Route path="/contacts" exact={true}
@@ -69,7 +83,7 @@ render() {
           />
           <Route path="/create" exact={true}
             render={routerProps => (
-              <CreatePage {...routerProps}/>
+              <CreatePage token={this.state.token} {...routerProps}/>
             )}
           />
           {/* <Redirect to="/" /> */}
