@@ -13,7 +13,7 @@ export default class CommentItem extends Component {
     return (
       <li>
         {/* <p>{commentData.timestamp}</p> */}
-        <p>{commentData.details}</p>
+        <p>{commentData.comment}</p>
       </li>
     );
   }
