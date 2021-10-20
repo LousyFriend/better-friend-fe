@@ -76,7 +76,7 @@ render() {
           />
           <Route path="/details/:id" exact
             render={routerProps => this.state.token
-              ? <DetailsPage token={this.state.token} {...routerProps}/>
+              ? <DetailsPage token={this.state.token} oauth={this.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />
