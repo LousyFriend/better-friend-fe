@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import getCommentsById from './get-comments-utils.js';
+import CommentSection from './components/CommentSection.js';
 import getContactById from './get-contact-utils.js';
 
 export default class DetailsPage extends Component {
@@ -12,39 +12,36 @@ export default class DetailsPage extends Component {
 
     componentDidMount = async () => {
       try {
+        // set isLoading state to true.
         await this.setState({ isLoading: true });
         // Grabs contact_id from the react-router-dom url params.
         const id = Number(this.props.match.params.id);
-    // grabs token
+        // grabs token
         const { token } = this.props;
 
-    // async make get request for contact data (contact info + social media)
+        // async make get request for contact data (contact info + social media)
         const contactData = await getContactById(token, id);
         console.log('contact data', contactData);
-    // async place in state'
-        await this.setState({ contact_data: contactData });
-      
-      
-    // async make get request for comment data (comments)
-        const commentsData = await getCommentsById(token, id);
-        console.log('comments data', commentsData);
 
-    // async place in state
-        await this.setState({ comments: commentsData });
+        // async place in state'
+        await this.setState({ contact_data: contactData });
+        // set isLoading state to false.
         await this.setState({ isLoading: false });
+
       } catch (error) {
         console.log(error);
       }
     }
 
     render() {
-    //   const { contact_data } = this.state;
+      const { token } = this.props;
+      const { isLoading, contact_data } = this.state;
       return (
         <>
           {/* ternary here to check if editSwitch is true or false. If true,  */}
-          { this.state.isLoading ?
+          { isLoading ?
             <p>Loading Icon Placeholder</p> :
-            this.state.contact_data.map(obj => {
+            contact_data.map(obj => {
               return (
                 <div>
                   <p>{obj.name}</p>
@@ -63,6 +60,11 @@ export default class DetailsPage extends Component {
               );
             })
           }
+
+          <CommentSection 
+            token = { token }
+          />
+
         </>
       );
     }
