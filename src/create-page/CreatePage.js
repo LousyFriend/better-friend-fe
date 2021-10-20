@@ -25,13 +25,15 @@ export default class CreatePage extends Component {
       const { token } = this.props;
 
     // call post function here and pass it the state obj save returning info to variable
-      const newContactDataObj = postContact(token, this.state);
+      console.log('state before post', this.state);
+      const newContactDataObj = await postContact(token, this.state);
 
     // munge data and grab the contact id
       const newContactIdInt = newContactDataObj.contactData.id;
 
+      console.log('new contact id', newContactIdInt);
     // redirect user to detailspage/:id
-      this.history.push(`/details/${newContactIdInt}`);
+      this.props.history.push(`/details/${newContactIdInt}`);
     }
     
     render() {
