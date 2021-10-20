@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import postCommentById from '../post-comments-utils.js';
 
 export default class CommentForm extends Component {
