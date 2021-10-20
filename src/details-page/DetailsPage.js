@@ -1,31 +1,50 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import getCommentsById from './get-comments-utils.js';
+import getContactById from './get-contact-utils.js';
 
 export default class DetailsPage extends Component {
-    start ={
+    state ={
       comments: [],
-      contact_data: []
-    // editSwitch: false;
+      contact_data: [],
+      isLoading: true
     }
 
     componentDidMount = async () => {
+      try {
+        await this.setState({ isLoading: true });
         // Grabs contact_id from the react-router-dom url params.
-        //   const contactId = this.props.match.params.contact_id;
+        const id = Number(this.props.match.params.id);
+    // grabs token
+        const { token } = this.props;
 
-        // async make get request for contact data (contact info + social media)
-        // async place in state
+    // async make get request for contact data (contact info + social media)
+        const contactData = await getContactById(token, id);
+        console.log('contact data', contactData);
+    // async place in state'
+        await this.setState({ contact_data: contactData });
+      
+      
+    // async make get request for comment data (comments)
+        const commentsData = await getCommentsById(token, id);
+        console.log('comments data', commentsData);
 
-        // async make get request for comment data (comments)
-        // async place in state
+    // async place in state
+        await this.setState({ comments: commentsData });
+        await this.setState({ isLoading: false });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     render() {
-      const { contact_data } = this.state;
+    //   const { contact_data } = this.state;
       return (
         <>
           {/* ternary here to check if editSwitch is true or false. If true,  */}
-          {
-            contact_data.map(obj => {
+          { this.state.isLoading ?
+            <p>Loading Icon Placeholder</p> :
+            this.state.contact_data.map(obj => {
               return (
                 <div>
                   <p>{obj.name}</p>
