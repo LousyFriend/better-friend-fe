@@ -1,8 +1,8 @@
 import 
 request
   from 'superagent';
-// const URL = 'http://localhost:7890/';
-const URL = 'https://better-friend.herokuapp.com/';
+const URL = 'http://localhost:7890/';
+// const URL = 'https://better-friend.herokuapp.com/';
 
 
 export async function login(email, password) {
@@ -34,7 +34,7 @@ export async function newUser(token) {
       .post(`${URL}api/new-user`)
       .set('Authorization', token);
     console.log(response.body);
-    return response.body;
+    // return response.body;
   } catch (error) {
     console.log(error);
   }
