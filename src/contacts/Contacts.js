@@ -20,7 +20,6 @@ export default class Contacts extends Component {
 
   render() {
     const { contactList } = this.state;
-    const { token } = this.props;
 
     return (
       <div>
