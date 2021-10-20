@@ -9,21 +9,21 @@ export default class CommentForm extends Component {
     handleCommentSubmit = async (e) => {
     // Prevents form defaults
       e.preventDefault();
-    // Grabs contact_id from the react-router-dom url params.
-      const id = Number(this.props.match.params.id);
-    // Grab token and retrieveComments function from props. 
-      const { token, retrieveComments } = this.props;
+
+    // Grab contact_id, token, and retrieveComments function from props. 
+      const { token, retrieveComments, contact_id } = this.props;
 
     // ***Should we create a timestamp to accompany comments?
 
     // Call post comment function w/ token and comment from state.
-      postCommentById(token, id, this.state);
+      postCommentById(token, contact_id, this.state);
     // Call retrieveComments to retrieve new comments in comment section.
       retrieveComments();
     }
 
 
     render() {
+      console.log(this.state.comment);
       return (
         <div>
           <form onSubmit={this.handleCommentSubmit}>

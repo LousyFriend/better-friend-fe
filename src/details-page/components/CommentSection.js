@@ -14,13 +14,11 @@ export default class CommentSection extends Component {
       try {
             // set isLoading state to true.
         await this.setState({ isLoading: true });
-            // Grabs contact_id from the react-router-dom url params.
-        const id = Number(this.props.match.params.id);
-            // grabs token
-        const { token } = this.props;
+            // Grabs contact_id from the react-router-dom url params grabs token.
+        const { token, contact_id } = this.props;
             
             // async make get request for comment data (comments)
-        const commentsData = await getCommentsById(token, id);
+        const commentsData = await getCommentsById(token, contact_id);
         console.log('comments data', commentsData);
       
             // async place in state
@@ -39,26 +37,29 @@ export default class CommentSection extends Component {
 
 
     render() {
-      const { token, retrieveComments } = this.props;
+      const { token, contact_id } = this.props;
       const { comments } = this.state;
       return (
         <div>
 
           < CommentForm
             token = { token }
-            retrieveComments = { retrieveComments }
+            retrieveComments = { this.retrieveComments }
+            contact_id = { contact_id }
           />
 
-          <ul>
-            {
-              comments.map(item => 
-                <CommentItem 
-                  token = { token }
-                  commentData = { comments }
-                />
-              )
-            }
-          </ul>
+          {
+            <ul>
+              { comments &&
+                comments.map(item => 
+                  <CommentItem 
+                    token = { token }
+                    commentData = { comments }
+                  />
+                )
+              }
+            </ul>
+          }
 
         </div>
       );
