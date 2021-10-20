@@ -27,6 +27,7 @@ export default class Contacts extends Component {
         {
           contactList.map(contact => <ContactCard {...contact}/>)
         }
+        <div className="p-10  mg-10 max-w-md mx-auto  text-white bg-black rounded-xl shadow-lg flex items-center space-x-9 animate-hover:border-red-700 border-4  cursor-pointer">F*$& Yeah!</div>
       </div>
     );
   }
