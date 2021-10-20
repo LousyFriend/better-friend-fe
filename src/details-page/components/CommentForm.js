@@ -23,7 +23,7 @@ export default class CommentForm extends Component {
 
 
     render() {
-      console.log(this.state.comment);
+      console.log('comment state on render', this.state.comment);
       return (
         <div>
           <form onSubmit={this.handleCommentSubmit}>

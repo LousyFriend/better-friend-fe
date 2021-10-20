@@ -54,7 +54,8 @@ export default class CommentSection extends Component {
                 comments.map(item => 
                   <CommentItem 
                     token = { token }
-                    commentData = { comments }
+                    commentData = { item }
+                    key = { item.id }
                   />
                 )
               }

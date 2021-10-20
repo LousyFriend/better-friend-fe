@@ -45,7 +45,7 @@ export default class DetailsPage extends Component {
             <p>Loading Icon Placeholder</p> :
             contact_data.map(obj => {
               return (
-                <div>
+                <div key = {obj.contact_id}>
                   <p>{obj.name}</p>
                   <p>{obj.job_title}</p>
                   <img src={obj.image_url} alt='contact' />
