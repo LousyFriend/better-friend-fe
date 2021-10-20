@@ -6,12 +6,12 @@ const URL = 'https://better-friend.herokuapp.com';
 
 export default async function postContact(token, Obj) {
   try {
-    const data = await request
-      .post(`${URL}/contacts`)
+    const response = await request
+      .post(`${URL}/api/contacts`)
       .send(Obj)
       .set('Authorization', token);
 
-    return data.response;
+    return response.body;
   } catch (error) {
     console.log(error);
   }
