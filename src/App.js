@@ -38,41 +38,53 @@ render() {
   return (
     <div className="App">
       <Router>
-        <header>
+        <header style={{ display: 'flex', alignItems: 'center', backgroundColor: 'black', color: 'white' }}>
           <NavLink
             exact className='links'
             activeStyle={{ fontSize:'1.5rem' }}
             to='/'>Home
           </NavLink>        
+          <NavLink
+            exact className='links'
+            activeStyle={{ fontSize:'1.5rem' }}
+            to='/contacts'>Contacts
+          </NavLink>        
+          <NavLink
+            exact className='links'
+            activeStyle={{ fontSize:'1.5rem' }}
+            to='/create'>Create
+          </NavLink>        
           {this.state.token && <button onClick={this.logout}>Logout</button>}
           
         </header>
         <Switch>
-          <Route path="/" exact={true}
+          <Route path="/" exact
             render={routerProps => (
               <Home {...routerProps}/>
             )}
           />
-          <Route path="/login" exact={true}
+          <Route path="/login" exact
             render={routerProps => (
               <Login handleState={this.handleState} handleTokenChange={this.handleTokenChange} {...routerProps}/>
             )}
           />
-          <Route path="/contacts" exact={true}
+          <Route path="/contacts" exact
             render={(routerProps) => this.state.token
               ? <Contacts token={this.state.token} {...routerProps} />
               : <Redirect to='/Login' /> } 
             
           />
-          <Route path="/details/:id" exact={true}
-            render={routerProps => (
-              <DetailsPage token={this.state.token} {...routerProps}/>
-            )}
+          <Route path="/details/:id" exact
+            render={routerProps => this.state.token
+              ? <DetailsPage token={this.state.token} {...routerProps}/>
+              : <Redirect to='/Login' />
+            }
           />
-          <Route path="/create" exact={true}
-            render={routerProps => (
-              <CreatePage token={this.state.token} {...routerProps}/>
-            )}
+          <Route path="/create" exact
+            render={routerProps => this.state.token
+              ? <CreatePage token={this.state.token} {...routerProps}/>
+              : <Redirect to='/Login' />
+            }
           />
         </Switch>
       </Router>
