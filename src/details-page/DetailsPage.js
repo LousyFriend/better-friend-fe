@@ -15,12 +15,12 @@ export default class DetailsPage extends Component {
         // set isLoading state to true.
         await this.setState({ isLoading: true });
         // Grabs contact_id from the react-router-dom url params.
-        const id = Number(this.props.match.params.id);
+        const contact_id = Number(this.props.match.params.id);
         // grabs token
         const { token } = this.props;
 
         // async make get request for contact data (contact info + social media)
-        const contactData = await getContactById(token, id);
+        const contactData = await getContactById(token, contact_id);
         console.log('contact data', contactData);
 
         // async place in state'
@@ -36,6 +36,8 @@ export default class DetailsPage extends Component {
     render() {
       const { token } = this.props;
       const { isLoading, contact_data } = this.state;
+      // Grabs contact_id from the react-router-dom url params.
+      const contact_id = Number(this.props.match.params.id);
       return (
         <>
           {/* ternary here to check if editSwitch is true or false. If true,  */}
@@ -43,7 +45,7 @@ export default class DetailsPage extends Component {
             <p>Loading Icon Placeholder</p> :
             contact_data.map(obj => {
               return (
-                <div>
+                <div key = {obj.contact_id}>
                   <p>{obj.name}</p>
                   <p>{obj.job_title}</p>
                   <img src={obj.image_url} alt='contact' />
@@ -63,6 +65,7 @@ export default class DetailsPage extends Component {
 
           <CommentSection 
             token = { token }
+            contact_id = { contact_id }
           />
 
         </>

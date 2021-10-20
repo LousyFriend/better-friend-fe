@@ -8,7 +8,8 @@ export default class Login extends Component {
       email: ''
     }
      responseGoogle= async (response)=> {
-       const oauthGoogle = response.tokenObj.access_token; 
+       const oauthGoogle = response.tokenObj.access_token;
+      //  console.log(oauthGoogle); need to delete
        this.props.handleState({ oauthGoogle:oauthGoogle });
        await this.setState({ email: response.profileObj.email, password:response.profileObj.googleId });
        await this.makeToken();
