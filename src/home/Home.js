@@ -8,8 +8,6 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <Link
-          exact className='links'
-          activeStyle={{ fontSize:'1.5rem' }}
           to='/login'> Login or Signup
         </Link>
       </div>

@@ -34,7 +34,7 @@ logout = () => {
 }
 
 render() {
-  
+  console.log(this.state.oauthGoogle);
   return (
     <div className="App">
       <Router>
