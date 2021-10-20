@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class CommentItem extends Component {
     // Still needs:
