@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-import { login } from '../fetch-utils';
+import { login, newUser } from './fetch-utils';
 
 export default class Login extends Component {
     state = {
@@ -19,13 +19,14 @@ export default class Login extends Component {
        const password = await this.state.password;
        const token = await login(email, password);
        await this.props.handleTokenChange(token);
+       await newUser(token);
+       console.log(newUser());
        this.props.history.push('/contacts'); }
 
      render() {
        return (
          <>
            <main>
-             
              <GoogleLogin 
                clientId='700191719998-4ehio8jd3oqho8pv4kfevr7ofjgq6akb.apps.googleusercontent.com'
                buttonText='Login'

@@ -12,7 +12,7 @@ export async function login(email, password) {
     email: email,
     password: password
   });
-  console.log(response.body);
+  
   return response.body.token;
   }
   catch (e) {
@@ -26,4 +26,16 @@ export async function login(email, password) {
   }
 
  
+}
+
+export async function newUser(token) {
+  try {
+    const response = await request
+      .post(`${URL}api/new-user`)
+      .set('Authorization', token);
+    console.log(response.body);
+    return response.body;
+  } catch (error) {
+    console.log(error);
+  }
 }
