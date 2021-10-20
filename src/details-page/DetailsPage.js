@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import CommentSection from './components/CommentSection.js';
+import getContactById from './get-contact-utils.js';
 
 export default class DetailsPage extends Component {
-    start ={
+    state ={
       comments: [],
-      contact_data: []
-    // editSwitch: false;
+      contact_data: [],
+      isLoading: true
     }
 
     componentDidMount = async () => {
+      try {
+        // set isLoading state to true.
+        await this.setState({ isLoading: true });
         // Grabs contact_id from the react-router-dom url params.
-        //   const contactId = this.props.match.params.contact_id;
+        const contact_id = Number(this.props.match.params.id);
+        // grabs token
+        const { token } = this.props;
 
         // async make get request for contact data (contact info + social media)
-        // async place in state
+        const contactData = await getContactById(token, contact_id);
+        console.log('contact data', contactData);
 
-        // async make get request for comment data (comments)
-        // async place in state
+        // async place in state'
+        await this.setState({ contact_data: contactData });
+        // set isLoading state to false.
+        await this.setState({ isLoading: false });
+
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     render() {
-      const { contact_data } = this.state;
+      const { token } = this.props;
+      const { isLoading, contact_data } = this.state;
+      // Grabs contact_id from the react-router-dom url params.
+      const contact_id = Number(this.props.match.params.id);
       return (
         <>
           {/* ternary here to check if editSwitch is true or false. If true,  */}
-          {
+          { isLoading ?
+            <p>Loading Icon Placeholder</p> :
             contact_data.map(obj => {
               return (
                 <div>
@@ -44,6 +62,12 @@ export default class DetailsPage extends Component {
               );
             })
           }
+
+          <CommentSection 
+            token = { token }
+            contact_id = { contact_id }
+          />
+
         </>
       );
     }
