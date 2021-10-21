@@ -4,6 +4,7 @@ import CommentSection from './components/CommentSection.js';
 import ContactInfo from './components/ContactInfo.js';
 import EditContactForm from './components/EditContactForm.js';
 import getContactById from './get-contact-utils.js';
+import CalendarForm from '../calendar-page/CalendarForm.js';
 
 export default class DetailsPage extends Component {
     state ={
@@ -47,9 +48,10 @@ export default class DetailsPage extends Component {
     }
 
     render() {
-      const { token } = this.props;
+
+      const { token, oauth } = this.props;
       const { isLoading, contact_data, editSwitch } = this.state;
-      console.log('testing if we need to turn this id into a number', typeof this.props.match.params.id);
+
       const contact_id = Number(this.props.match.params.id);
 
       // Determines what to display to page based on editSwitch state
@@ -73,13 +75,23 @@ export default class DetailsPage extends Component {
 
       return (
         <>
-          {/* <button onClick={() => this.setState({ editSwitch: !this.state.editSwitch })}>Edit</button> */}
+
           <iframe title='calendar' src={`https://calendar.google.com/calendar/embed?height=200&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&src=${this.props.email}&color=%23039BE5`} width="350" height="350" frameborder="0" scrolling="no"></iframe>
 
           { 
             isLoading ?
               <p>Loading Icon Placeholder</p> :
               display
+          }
+          {
+            isLoading
+              ? <p>Loading Icon Placeholder</p> 
+              : <CalendarForm 
+                token = { token }
+                oauth = { oauth }
+                contactId = { contact_id }
+                name = { this.state.contact_data[0].name }
+              />
           }
           
           <CommentSection 
