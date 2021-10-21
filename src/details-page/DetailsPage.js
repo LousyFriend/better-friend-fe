@@ -53,6 +53,7 @@ export default class DetailsPage extends Component {
       const contact_id = Number(this.props.match.params.id);
 
       // Determines what to display to page based on editSwitch state
+      // https://reactjs.org/docs/conditional-rendering.html
       let display;
       !editSwitch ?
         display = 

@@ -40,15 +40,17 @@ export default class CreatePage extends Component {
       e.preventDefault();
 
     // destructure token from props.
-      const { token, flipEditSwitch, contact_id } = this.props;
+      const { token, flipEditSwitch, contact_id, retrieveContactData } = this.props;
 
     // call put function here and pass it the state obj & token
       await putContact(token, contact_id, this.state);
 
+      retrieveContactData();
+
     // call flipEditSwitch
       flipEditSwitch();
 
-    // 🟡 call retrieveContact here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
+    // 🟡 call retrieveContactData here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
     }
 
     handleDeleteClick = async () => {
@@ -64,7 +66,7 @@ export default class CreatePage extends Component {
       if (!confirmDelete) return;
       
       // if user didn't cancel delete the contact.
-      await deleteContact(token, contact_id);
+      await deleteContact(token, Number(contact_id));
 
       // ❗ NOT WORKING - redirect user to detailspage/:id
       // this.props.history.push('/contacts');
@@ -99,10 +101,10 @@ export default class CreatePage extends Component {
             <label>
                 Contact Category
               <select value={contact_category} onChange={async (e) => await this.setState({ contact_category: e.target.value })} required>
-                <option value='Personal'>Personal</option> : 
-                <option value='Professional'>Professional</option> : 
-                <option value='Family'>Family</option> : 
-                <option value='Other'>Other</option> : 
+                <option value='Personal'>Personal</option> 
+                <option value='Professional'>Professional</option> 
+                <option value='Family'>Family</option> 
+                <option value='Other'>Other</option> 
               </select>
             </label>
 
