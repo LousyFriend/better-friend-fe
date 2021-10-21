@@ -40,7 +40,7 @@ export default class CommentSection extends Component {
       const { token, contact_id } = this.props;
       const { comments } = this.state;
       return (
-        <div>
+        <div class='flex flex-col gap-y-2'>
 
           < CommentForm
             token = { token }
@@ -49,7 +49,7 @@ export default class CommentSection extends Component {
           />
 
           {
-            <ul>
+            <ul class='p-1 w-1/3'>
               { comments &&
                 comments.map(item => 
                   <CommentItem 
