@@ -40,15 +40,17 @@ export default class CreatePage extends Component {
       e.preventDefault();
 
     // destructure token from props.
-      const { token, flipEditSwitch, contact_id } = this.props;
+      const { token, flipEditSwitch, contact_id, retrieveContactData } = this.props;
 
     // call put function here and pass it the state obj & token
       await putContact(token, contact_id, this.state);
 
+      retrieveContactData();
+
     // call flipEditSwitch
       flipEditSwitch();
 
-    // 🟡 call retrieveContact here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
+    // 🟡 call retrieveContactData here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
     }
 
     handleDeleteClick = async () => {
