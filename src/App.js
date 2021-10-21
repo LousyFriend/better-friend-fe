@@ -17,11 +17,14 @@ const TOKEN = 'TOKEN';
 export default class App extends Component {
 state = {
   token: localStorage.getItem(TOKEN) || '',
-  oauthGoogle: ''
+  oauthGoogle: '',
+  email:''
 }
-
-handleState = (oauthGoogle) => {
-  this.setState({ oauthGoogle: oauthGoogle });
+handleEmail = async (email) => {
+  await this.setState({ email: email });
+}
+handleState = async (oauthGoogle) => {
+  await this.setState({ oauthGoogle: oauthGoogle });
   
 } 
 handleTokenChange = async (token) => {
@@ -44,17 +47,27 @@ render() {
             activeStyle={{ fontSize:'1.5rem' }}
             to='/'>Home
           </NavLink>        
-          <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
-            to='/contacts'>Contacts
-          </NavLink>        
+          { this.state.token
+            ? <NavLink
+              exact className='links'
+              activeStyle={{ fontSize:'1.5rem' }}
+              to='/contacts'>Contacts
+            </NavLink> 
+            : <NavLink
+              exact className='links'
+              activeStyle={{ fontSize:'1.5rem' }}
+              to='/Login'>Login
+            </NavLink>   
+          }
           <NavLink
             exact className='links'
             activeStyle={{ fontSize:'1.5rem' }}
             to='/create'>Create
           </NavLink>        
-          {this.state.token && <button onClick={this.logout}>Logout</button>}
+          {this.state.token 
+            ? <button onClick={this.logout}>Logout</button>
+            : <button onClick={'/login'}></button> 
+          }
           
         </header>
         <Switch>
@@ -65,7 +78,7 @@ render() {
           />
           <Route path="/login" exact
             render={routerProps => (
-              <Login handleState={this.handleState} handleTokenChange={this.handleTokenChange} {...routerProps}/>
+              <Login handleEmail={this.handleEmail} handleState={this.handleState} handleTokenChange={this.handleTokenChange} {...routerProps}/>
             )}
           />
           <Route path="/contacts" exact
@@ -76,7 +89,7 @@ render() {
           />
           <Route path="/details/:id" exact
             render={routerProps => this.state.token
-              ? <DetailsPage token={this.state.token} oauth={this.oauthGoogle} {...routerProps}/>
+              ? <DetailsPage email={this.state.email} token={this.state.token} oauth={this.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />

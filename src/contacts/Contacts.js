@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-
 import { getContacts } from './contacts-request.js';
 import ContactCard from './ContactCard.js';
 
@@ -27,6 +26,7 @@ export default class Contacts extends Component {
         {
           contactList.map(contact => <ContactCard {...contact}/>)
         }
+        
       </div>
     );
   }
