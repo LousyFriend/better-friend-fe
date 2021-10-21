@@ -63,6 +63,7 @@ export default class CreatePage extends Component {
             <label>
                 Contact Category
               <select onChange={async (e) => await this.setState({ contact_category: e.target.value })} required>
+                <option value="" selected disabled hidden>Choose here</option>
                 <option value='Personal'>Personal</option>
                 <option value='Professional'>Professional</option>
                 <option value='Family'>Family</option>
