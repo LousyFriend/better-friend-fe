@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import CommentSection from './components/CommentSection.js';
+import ContactInfo from './components/ContactInfo.js';
+import EditContactForm from './components/EditContactForm.js';
 import getContactById from './get-contact-utils.js';
 
 export default class DetailsPage extends Component {
     state ={
-      comments: [],
       contact_data: [],
-      isLoading: true
+      isLoading: true,
+      editSwitch: false
+    }
+
+    retrieveContactData = async () => {
+      // Grabs contact_id from the react-router-dom url params.
+      const contact_id = Number(this.props.match.params.id);
+      // grabs token
+      const { token } = this.props;
+
+      // async make get request for contact data (contact info + social media)
+      const contactData = await getContactById(token, contact_id);
+      console.log('contact data', contactData);
+
+      // async place in state'
+      await this.setState({ contact_data: contactData });
     }
 
     componentDidMount = async () => {
       try {
         // set isLoading state to true.
         await this.setState({ isLoading: true });
-        // Grabs contact_id from the react-router-dom url params.
-        const contact_id = Number(this.props.match.params.id);
-        // grabs token
-        const { token } = this.props;
+       
+        // call retrieveContactData
+        await this.retrieveContactData();
 
-        // async make get request for contact data (contact info + social media)
-        const contactData = await getContactById(token, contact_id);
-        console.log('contact data', contactData);
-
-        // async place in state'
-        await this.setState({ contact_data: contactData });
         // set isLoading state to false.
         await this.setState({ isLoading: false });
 
@@ -33,34 +42,43 @@ export default class DetailsPage extends Component {
       }
     }
 
+    flipEditSwitch = async () => {
+      await this.setState({ editSwitch: !this.state.editSwitch });
+    }
+
     render() {
       const { token } = this.props;
-      const { isLoading, contact_data } = this.state;
-      // Grabs contact_id from the react-router-dom url params.
+      const { isLoading, contact_data, editSwitch } = this.state;
+      console.log('testing if we need to turn this id into a number', typeof this.props.match.params.id);
       const contact_id = Number(this.props.match.params.id);
+
+      // Determines what to display to page based on editSwitch state
+      let display;
+      !editSwitch ?
+        display = 
+        <div>
+          {contact_data.map(obj => < ContactInfo object = { obj } key = { obj.id } />)}
+          <button onClick={this.flipEditSwitch}>EDIT BUTTON</button>
+        </div> 
+        :
+        display = 
+        <EditContactForm 
+          token = { token } 
+          contactDataObj = { contact_data[0] } 
+          retrieveContactData = {this.retrieveContactData}
+          flipEditSwitch = { this.flipEditSwitch } 
+          contact_id = { contact_id }
+        />;
+
       return (
         <>
-          {/* ternary here to check if editSwitch is true or false. If true,  */}
-          { isLoading ?
-            <p>Loading Icon Placeholder</p> :
-            contact_data.map(obj => {
-              return (
-                <div key = {obj.contact_id}>
-                  <p>{obj.name}</p>
-                  <p>{obj.job_title}</p>
-                  <img src={obj.image_url} alt='contact' />
-                  <p>{obj.interests}</p>
-                  <p>{obj.contact_category}</p>
-                  <p>{obj.phone}</p>
-                  <Link to={`${obj.linked_in}`}>LinkedIn</Link>
-                  <Link to={`${obj.facebook}`}>Facebook</Link>
-                  <Link to={`${obj.gmail}`}>Gmail</Link>
-                  <Link to={`${obj.twitter}`}>Twitter</Link>
-                  <Link to={`${obj.github}`}>Github</Link>
-                  <Link to={`${obj.personal_site}`}>Personal Site</Link> 
-                </div>
-              );
-            })
+          {/* <button onClick={() => this.setState({ editSwitch: !this.state.editSwitch })}>Edit</button> */}
+          
+
+          { 
+            isLoading ?
+              <p>Loading Icon Placeholder</p> :
+              display
           }
 
           <CommentSection 

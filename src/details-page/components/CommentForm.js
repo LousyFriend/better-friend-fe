@@ -27,7 +27,7 @@ export default class CommentForm extends Component {
       return (
         <div>
           <form onSubmit={this.handleCommentSubmit}>
-            <input onChange={async (e) => await this.setState({ comment: e.target.value }) }type='text' required />
+            <input onChange={async (e) => await this.setState({ comment: e.target.value })} type='text' style={{ resize: 'both', overflow: 'auto' }} required />
             <button>Add Button</button>
           </form>
         </div>
