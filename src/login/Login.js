@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-import { login, newUser } from './fetch-utils';
+import { login } from './fetch-utils';
 
 export default class Login extends Component {
     state = {
