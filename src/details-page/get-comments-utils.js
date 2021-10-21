@@ -1,6 +1,8 @@
 import request from 'superagent';
 
-const URL = 'https://better-friend.herokuapp.com';
+// const URL = 'https://better-friend.herokuapp.com';
+const URL = 'http://localhost:7890';
+
 
 
 export default async function getCommentsById(token, contactId) {
