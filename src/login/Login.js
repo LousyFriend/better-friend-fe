@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-import { login, newUser } from './fetch-utils';
+import { login } from './fetch-utils';
 
 export default class Login extends Component {
     state = {
@@ -9,7 +9,8 @@ export default class Login extends Component {
     }
      responseGoogle= async (response)=> {
        const oauthGoogle = response.tokenObj.access_token;
-       this.props.handleState({ oauthGoogle:oauthGoogle });
+      //  console.log(oauthGoogle); need to delete
+       this.props.handleState(oauthGoogle);
        await this.setState({ email: response.profileObj.email, password:response.profileObj.googleId });
        await this.makeToken();
      }
@@ -18,9 +19,7 @@ export default class Login extends Component {
        const password = await this.state.password;
        const token = await login(email, password);
        await this.props.handleTokenChange(token);
-       await newUser(token);
-       console.log(newUser());
-       this.props.history.push('/contacts'); }
+       await this.props.history.push('/contacts'); }
 
      render() {
        return (

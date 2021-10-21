@@ -6,13 +6,13 @@ const URL = 'http://localhost:7890/';
 
 
 export async function login(email, password) {
-  console.log(typeof password);
-  console.log(email, password);
+
   try { const response = await request.post(`${URL}auth/signup`).send({
     email: email,
     password: password
   });
-  
+  if (response.body.token) await newUser(response.body.token);
+   
   return response.body.token;
   }
   catch (e) {
@@ -33,8 +33,8 @@ export async function newUser(token) {
     const response = await request
       .post(`${URL}api/new-user`)
       .set('Authorization', token);
-    console.log(response.body);
-    // return response.body;
+    console.log(response);
+    return response.body;
   } catch (error) {
     console.log(error);
   }
