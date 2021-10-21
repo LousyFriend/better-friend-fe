@@ -24,9 +24,9 @@ export default class Login extends Component {
        return (
          <>
            <main class='container mx-auto bg-blue-600 items-center'>
-             <div class="p-10">  
+             <div class="p-10 justify-center">  
    
-               <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-200">
+               <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-200 content-evenly ">
                  <img class="w-full" src="blank-avatar.jpg" alt="BetterFriends"/>
                  <div class="px-6 py-4">
                    <div class="font-bold text-xl mb-2"></div>
