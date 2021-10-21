@@ -5,10 +5,11 @@ const URL = 'http://localhost:7890';
 
 
 
-export default async function getContactById(token, contactId) {
+export default async function putContact(token, contact_id, updatedContactObj) {
   try {
     const response = await request
-      .get(`${URL}/api/contacts/${contactId}`)
+      .put(`${URL}/api/contacts/${contact_id}`)
+      .send(updatedContactObj)
       .set('Authorization', token);
 
     return response.body;

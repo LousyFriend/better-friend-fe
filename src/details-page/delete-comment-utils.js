@@ -4,11 +4,10 @@ import request from 'superagent';
 const URL = 'http://localhost:7890';
 
 
-
-export default async function getContactById(token, contactId) {
+export default async function deleteComment(token, comment_id) {
   try {
     const response = await request
-      .get(`${URL}/api/contacts/${contactId}`)
+      .delete(`${URL}/api/comments/${comment_id}`)
       .set('Authorization', token);
 
     return response.body;

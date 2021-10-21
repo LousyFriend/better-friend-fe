@@ -26,9 +26,9 @@ export default class CommentForm extends Component {
       console.log('comment state on render', this.state.comment);
       return (
         <div>
-          <form onSubmit={this.handleCommentSubmit}>
-            <input onChange={async (e) => await this.setState({ comment: e.target.value }) }type='text' required />
-            <button>Add Button</button>
+          <form onSubmit={this.handleCommentSubmit} class="flex flex-col gap-y-2">
+            <textarea onChange={async (e) => await this.setState({ comment: e.target.value })} type='text' required class='box-border h-32 w-1/3 p-4 border-2 border-black'/>
+            <button class='box-border border-2 h-16 w-1/3 border-black p-4'>Post Note</button>
           </form>
         </div>
       );

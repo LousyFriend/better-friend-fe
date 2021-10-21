@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
+import deleteComment from '../delete-comment-utils.js';
 
 export default class CommentItem extends Component {
-    // Still needs:
-    //  - Timestamp?
-    //  - A delete/edit button in li jsx which makes a DELETE/PUT request.
-    //      - Will require token from props. 
-    //      - Will require retrieveComments function from comment section too.
+
+  handleDeleteComment = async () => {
+    const { commentData, token, retrieveComments } = this.props;
+    await deleteComment(token, Number(commentData.comment_id));
+    await retrieveComments();
+  }
+    
     
   render() {
     //   Grab comment data from props to create list item.
     const { commentData } = this.props;
+    console.log('comment data from props on comment render', commentData);
     return (
-      <li>
+      <li style={{ display: 'flex', gap: '10px' }}>
         {/* <p>{commentData.timestamp}</p> */}
         <p>{commentData.comment}</p>
+        <button onClick={this.handleDeleteComment}>Delete Comment</button>
+
       </li>
     );
   }

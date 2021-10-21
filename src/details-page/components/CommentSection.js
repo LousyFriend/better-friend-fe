@@ -55,7 +55,8 @@ export default class CommentSection extends Component {
                   <CommentItem 
                     token = { token }
                     commentData = { item }
-                    key = { item.id }
+                    retrieveComments = { this.retrieveComments }
+                    key = { item.comment_id }
                   />
                 )
               }

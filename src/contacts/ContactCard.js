@@ -8,12 +8,12 @@ export default class ContactCard extends Component {
     return (
       <Link to={`/details/${id}`} style={{ margin: '30px' }}>
         {
-          <div>
-            <div>
+          <div class='bg-red-100'>
+            <div class='w-screen'>
               {
                 image_url === null || image_url === undefined || image_url === ''
                   // ? <img src={`${process.env.PUBLIC_URL}/assets/blank-avatar.jpg`} alt='blank avatar' width='300px' height='200px'/>
-                  ? <img src='blank-avatar.jpg' alt='blank avatar' width='300px' height='200px'/>
+                  ? <img class='object-contain' src='blank-avatar.jpg' alt='blank avatar' width='300px' height='200px'/>
                   : <img src={ image_url }alt='blank avatar'></img>
               }
             </div>
