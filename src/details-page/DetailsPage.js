@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CommentSection from './components/CommentSection.js';
 import getContactById from './get-contact-utils.js';
+import CalendarForm from '../calendar-page/CalendarForm.js';
 
 export default class DetailsPage extends Component {
     state ={
@@ -34,7 +35,7 @@ export default class DetailsPage extends Component {
     }
 
     render() {
-      const { token } = this.props;
+      const { token, oauth } = this.props;
       const { isLoading, contact_data } = this.state;
       // Grabs contact_id from the react-router-dom url params.
       const contact_id = Number(this.props.match.params.id);
@@ -57,10 +58,20 @@ export default class DetailsPage extends Component {
                   <Link to={`${obj.gmail}`}>Gmail</Link>
                   <Link to={`${obj.twitter}`}>Twitter</Link>
                   <Link to={`${obj.github}`}>Github</Link>
-                  <Link to={`${obj.personal_site}`}>Personal Site</Link> 
+                  <Link to={`${obj.personal_site}`}>Personal Site</Link>
                 </div>
               );
             })
+          }
+          {
+            isLoading
+              ? <p>Loading Icon Placeholder</p> 
+              : <CalendarForm 
+                token = { token }
+                oauth = { oauth }
+                contactId = { contact_id }
+                name = { this.state.contact_data[0].name }
+              />
           }
 
           <CommentSection 
