@@ -12,8 +12,6 @@ import Login from './login/Login.js';
 import Contacts from './contacts/Contacts.js';
 import DetailsPage from './details-page/DetailsPage.js';
 import CreatePage from './create-page/CreatePage.js';
-import CalendarPage from './calendar-page/CalendarForm.js';
-import CalendarForm from './calendar-page/CalendarForm.js';
 const TOKEN = 'TOKEN';
 
 export default class App extends Component {
