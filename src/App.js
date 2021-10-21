@@ -47,17 +47,27 @@ render() {
             activeStyle={{ fontSize:'1.5rem' }}
             to='/'>Home
           </NavLink>        
-          <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
-            to='/contacts'>Contacts
-          </NavLink>        
+          { this.state.token
+            ? <NavLink
+              exact className='links'
+              activeStyle={{ fontSize:'1.5rem' }}
+              to='/contacts'>Contacts
+            </NavLink> 
+            : <NavLink
+              exact className='links'
+              activeStyle={{ fontSize:'1.5rem' }}
+              to='/Login'>Login
+            </NavLink>   
+          }
           <NavLink
             exact className='links'
             activeStyle={{ fontSize:'1.5rem' }}
             to='/create'>Create
           </NavLink>        
-          {this.state.token && <button onClick={this.logout}>Logout</button>}
+          {this.state.token 
+            ? <button onClick={this.logout}>Logout</button>
+            : <button onClick={'/login'}></button> 
+          }
           
         </header>
         <Switch>
