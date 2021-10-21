@@ -16,9 +16,9 @@ export default class CommentForm extends Component {
     // ***Should we create a timestamp to accompany comments?
 
     // Call post comment function w/ token and comment from state.
-      postCommentById(token, contact_id, this.state);
+      await postCommentById(token, contact_id, this.state);
     // Call retrieveComments to retrieve new comments in comment section.
-      retrieveComments();
+      await retrieveComments();
     }
 
 
