@@ -1,0 +1,1 @@
+export const button = 'flex items-center justify-center p-5 h-60';
