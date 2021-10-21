@@ -89,7 +89,7 @@ render() {
           />
           <Route path="/details/:id" exact
             render={routerProps => this.state.token
-              ? <DetailsPage email={this.state.email} token={this.state.token} oauth={this.oauthGoogle} {...routerProps}/>
+              ? <DetailsPage email={this.state.email} token={this.state.token} oauth={this.state.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />
