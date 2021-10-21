@@ -12,7 +12,7 @@ export default class CommentItem extends Component {
       <li style={{ display: 'flex', gap: '10px' }}>
         {/* <p>{commentData.timestamp}</p> */}
         <p>{commentData.comment}</p>
-        <button onClick={() => deleteComment(token, commentData.comment_id)}>Delete Comment</button>
+        <button onClick={() => deleteComment(token, Number(commentData.comment_id))}>Delete Comment</button>
 
       </li>
     );
