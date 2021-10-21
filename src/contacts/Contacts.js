@@ -22,7 +22,7 @@ export default class Contacts extends Component {
 
     return (
       <div>
-        <Link to={'/create'}><button>Create Page</button></Link>
+        
         {
           contactList.map(contact => <ContactCard {...contact}/>)
         }
