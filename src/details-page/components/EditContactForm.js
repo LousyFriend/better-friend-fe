@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import deleteContact from '../delete-contact-utils.js';
 import putContact from '../put-contact-utils.js';
 // import postContact from './create-page-utils.js';
 
@@ -48,6 +49,25 @@ export default class CreatePage extends Component {
       flipEditSwitch();
 
     // 🟡 call retrieveContact here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
+    }
+
+    handleDeleteClick = async () => {
+
+      // destructure token and contact_id from props.
+      const { token, contact_id } = this.props;
+
+      // prompts user to confirm deletion.
+      // eslint-disable-next-line no-restricted-globals
+      const confirmDelete = confirm('Deleting contacts is permanent. Are you sure?');
+
+      // if user canceled stop.
+      if (!confirmDelete) return;
+      
+      // if user didn't cancel delete the contact.
+      await deleteContact(token, contact_id);
+
+      // ❗ NOT WORKING - redirect user to detailspage/:id
+      // this.props.history.push('/contacts');
     }
     
     render() {
@@ -123,6 +143,7 @@ export default class CreatePage extends Component {
 
             <button>Edit Contact</button>
           </form>
+          <button onClick={this.handleDeleteClick}>❌</button>
         </>
       );
     }
