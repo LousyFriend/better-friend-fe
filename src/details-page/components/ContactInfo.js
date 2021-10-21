@@ -9,7 +9,14 @@ export default class ContactInfo extends Component {
       <div key = {contact_id}>
         <p>{name}</p>
         <p>{job_title}</p>
-        <img src={image_url} alt='contact' />
+
+        {
+          image_url === null || image_url === undefined || image_url === ''
+                  // ? <img src={`${process.env.PUBLIC_URL}/assets/blank-avatar.jpg`} alt='blank avatar' width='300px' height='200px'/>
+            ? <img src='/blank-avatar.jpg' alt='blank avatar' width='300px' height='200px'/>
+            : <img src={ image_url } alt='blank avatar' />
+        }
+
         <p>{interests}</p>
         <p>{contact_category}</p>
         <p>{phone}</p>

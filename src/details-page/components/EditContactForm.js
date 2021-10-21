@@ -66,7 +66,7 @@ export default class CreatePage extends Component {
       if (!confirmDelete) return;
       
       // if user didn't cancel delete the contact.
-      await deleteContact(token, Number(contact_id));
+      await deleteContact(token, contact_id);
 
       // ❗ NOT WORKING - redirect user to detailspage/:id
       // this.props.history.push('/contacts');
