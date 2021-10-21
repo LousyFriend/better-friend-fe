@@ -26,14 +26,14 @@ export default class Login extends Component {
          return (
            <>
              <main class='container mx-auto bg-gray-200 items-center'>
-               <div class="p-10 justify-center border-4 border-red-700">  
+               <div class="flex p-10 justify-center border-4 border-red-700 ">  
    
-                 <div class="max-w-sm rounded overflow-hidden shadow-xl bg-gray-200 box-shadow border-black .border-6 ">
+                 <div class="max-w-sm md:w-screen rounded overflow-hidden shadow-xl bg-gray-200 box-shadow border-black .border-6 ">
                    <img class="w-full" src="blank-avatar.jpg" alt="BetterFriends"/>
                    <div class="px-6 py-4">
                      <div class="font-bold text-xl mb-2"></div>
                      <p class="text-black">
-                      Using your google account allows you to create events through our site and have them appear directely on your google calendar
+                      Using your google account allows you to create events through our site and have them appear directly on your google calendar
                      </p>
                    </div>
                    <div class={button}>
