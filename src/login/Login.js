@@ -9,7 +9,7 @@ export default class Login extends Component {
     }
      responseGoogle= async (response)=> {
        const oauthGoogle = response.tokenObj.access_token;
-       this.props.handleState({ oauthGoogle:oauthGoogle });
+       this.props.handleState(oauthGoogle);
        await this.setState({ email: response.profileObj.email, password:response.profileObj.googleId });
        await this.makeToken();
      }
