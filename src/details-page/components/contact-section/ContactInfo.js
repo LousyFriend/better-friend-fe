@@ -25,15 +25,15 @@ export default class ContactInfo extends Component {
 
         <p>Contact Category: {contact_category}</p>
 
-        <div class='flex gap-10 justify-center'>
-          <p>{phone}</p>
+        <div class='flex flex-wrap h-14 justify-around'>
+          { phone && <a href={phone}>Phone</a> }
           {/* ❗ THESE LINKS AREN'T WORKING */}
-          <Link to={linked_in}>LinkedIn</Link>
-          <Link to={`${facebook}`}>Facebook</Link>
-          <Link to={`${gmail}`}>Gmail</Link>
-          <Link to={`${twitter}`}>Twitter</Link>
-          <Link to={`${github}`}>Github</Link>
-          <Link to={`${personal_site}`}>Personal Site</Link>
+          { linked_in && <a class='align-center text-center' href={linked_in}>LinkedIn</a> }
+          { facebook && <a href={`${facebook}`}>Facebook</a> }
+          { gmail && <a href={`${gmail}`}>Gmail</a> }
+          { twitter && <a href={`${twitter}`}>Twitter</a> }
+          { github && <a href={`${github}`}>Github</a> }
+          { personal_site && <a href={`${personal_site}`}>personal_site</a> }
         </div>
 
       </div>
