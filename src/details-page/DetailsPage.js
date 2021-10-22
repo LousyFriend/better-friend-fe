@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import CommentSection from './components/CommentSection.js';
-import ContactInfo from './components/ContactInfo.js';
-import EditContactForm from './components/EditContactForm.js';
-import getContactById from './get-contact-utils.js';
+import CommentSection from './components/comment-section/CommentSection.js';
+import ContactInfo from './components/contact-section/ContactInfo.js';
+import EditContactForm from './components/contact-section/EditContactForm.js';
+import getContactById from './components/contact-section/contact-utils/get-contact-utils.js';
 import CalendarForm from '../calendar-page/CalendarForm.js';
 
 export default class DetailsPage extends Component {
@@ -14,14 +14,12 @@ export default class DetailsPage extends Component {
     }
 
     retrieveContactData = async () => {
-      // Grabs contact_id from the react-router-dom url params.
+      // Grabs contact_id from the react-router-dom url params
       const contact_id = Number(this.props.match.params.id);
-      // grabs token
+      // destructures token from props
       const { token } = this.props;
-
       // async make get request for contact data (contact info + social media)
       const contactData = await getContactById(token, contact_id);
-      // console.log('contact data', contactData);
 
       // async place in state'
       await this.setState({ contact_data: contactData });
@@ -29,60 +27,63 @@ export default class DetailsPage extends Component {
 
     componentDidMount = async () => {
       try {
-        // set isLoading state to true.
+        // set isLoading state to true
         await this.setState({ isLoading: true });
-       
         // call retrieveContactData
         await this.retrieveContactData();
-
-        // set isLoading state to false.
+        // set isLoading state to false
         await this.setState({ isLoading: false });
-
       } catch (error) {
         console.log(error);
       }
     }
 
+    redirectUser = () => {
+      // pushes user to contacts page. This must live here because the component in which it is used is not mounted
+      this.props.history.push('/contacts');
+    }
+
     flipEditSwitch = async () => {
+      // flips the editSwitch state value
       await this.setState({ editSwitch: !this.state.editSwitch });
     }
 
     render() {
-      console.log('oauth on details page', this.props.oauth);
+      // Destructures everything!!!
       const { token, oauth } = this.props;
       const { isLoading, contact_data, editSwitch } = this.state;
-
       const contact_id = Number(this.props.match.params.id);
 
       // Determines what to display to page based on editSwitch state
       // https://reactjs.org/docs/conditional-rendering.html
       let display;
-      !editSwitch ?
-        display = 
+      !editSwitch
+        ? display = 
         <div>
           {contact_data.map(obj => < ContactInfo object = { obj } key = { obj.id } />)}
           <button onClick={this.flipEditSwitch}>EDIT BUTTON</button>
         </div> 
-        :
-        display = 
+        : display = 
         <EditContactForm 
           token = { token } 
           contactDataObj = { contact_data[0] } 
           retrieveContactData = {this.retrieveContactData}
           flipEditSwitch = { this.flipEditSwitch } 
           contact_id = { contact_id }
+          redirectUser = { this.redirectUser }
         />;
 
       return (
-        <>
+        <div class='flex flex-col justify-center'>
 
-          <iframe title='calendar' src={`https://calendar.google.com/calendar/embed?height=200&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&src=${this.props.email}&color=%23039BE5`} width="350" height="350" frameborder="0" scrolling="no"></iframe>
 
           { 
-            isLoading ?
-              <p>Loading Icon Placeholder</p> :
-              display
+            isLoading 
+              ? <p>Loading Icon Placeholder</p> 
+              : display
           }
+
+
           {
             isLoading
               ? <p>Loading Icon Placeholder</p> 
@@ -94,12 +95,14 @@ export default class DetailsPage extends Component {
               />
           }
           
+          <iframe title='calendar' src={`https://calendar.google.com/calendar/embed?height=200&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&src=${this.props.email}&color=%23039BE5`} width="350" height="350" frameborder="0" scrolling="no"></iframe>
+          
           <CommentSection 
             token = { token }
             contact_id = { contact_id }
           />
 
-        </>
+        </div>
       );
     }
 }

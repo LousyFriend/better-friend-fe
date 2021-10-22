@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import postCommentById from '../post-comments-utils.js';
+import postCommentById from './comment-utils/post-comments-utils.js';
 
 export default class CommentForm extends Component {
     state = {
@@ -9,12 +9,8 @@ export default class CommentForm extends Component {
     handleCommentSubmit = async (e) => {
     // Prevents form defaults
       e.preventDefault();
-
     // Grab contact_id, token, and retrieveComments function from props. 
       const { token, retrieveComments, contact_id } = this.props;
-
-    // ***Should we create a timestamp to accompany comments?
-
     // Call post comment function w/ token and comment from state.
       await postCommentById(token, contact_id, this.state);
     // Call retrieveComments to retrieve new comments in comment section.
@@ -23,7 +19,6 @@ export default class CommentForm extends Component {
 
 
     render() {
-      console.log('comment state on render', this.state.comment);
       return (
         <div>
           <form onSubmit={this.handleCommentSubmit} class="flex flex-col gap-y-2">
