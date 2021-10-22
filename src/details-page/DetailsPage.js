@@ -74,7 +74,7 @@ export default class DetailsPage extends Component {
         />;
 
       return (
-        <div class='flex flex-col justify-center'>
+        <div class='flex flex-col justify-center gap-5 my-5'>
 
 
           { 
