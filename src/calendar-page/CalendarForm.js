@@ -17,15 +17,17 @@ export default class CalendarForm extends Component {
   }
   
   componentDidMount = async () => {
+    // Destructure token and contactId from props
     const { token, contactId } = this.props;
-    const response = await getContactCalendar(token, contactId);
-    await console.log(response[0].event_id);
-    const isEvent = await response[0].event_id
-      ? true
-      : false;
-    console.log(isEvent);
-    await this.setState({ isCalendarEvent: isEvent });
 
+    // Retrieves calendar event for calendar (if they exist) and saves to response variable.
+    const response = await getContactCalendar(token, contactId);
+    // isEvent is attempting to resolve whether or not the response event id exists.
+    const isEvent = response[0].event_id 
+      ? true 
+      : false;
+
+    await this.setState({ isCalendarEvent: isEvent });
   }
 
   handleSubmit = async (e) => {
@@ -33,6 +35,7 @@ export default class CalendarForm extends Component {
     const { token, oauth, contactId, name } = this.props;
     const { startDate, endDate, freq, isCalendarEvent } = this.state;
     
+    // Totally tubular dude! Look at that regex tho!!!!
     const noHyphenEndDate = endDate.replace(/-/g, '');
     const noHyphenStartDate = startDate.replace(/-/g, '');
 
@@ -52,8 +55,8 @@ export default class CalendarForm extends Component {
       'visibility': 'private',
     };
 
-    console.log(isCalendarEvent);
 
+    // This decides whether we make a put or post request to google.
     const response = await isCalendarEvent 
       ? putCalendarEvent(token, oauth, contactId, body)
       : postCalendarEvent(token, oauth, body);
@@ -63,6 +66,7 @@ export default class CalendarForm extends Component {
       next_date: noHyphenStartDate
     };
 
+    // This is meant to update our SQL backend
     await putContactCalendar(token, contactId, updateBody);
 
     this.setState({ freq: 'WEEKLY;' });
