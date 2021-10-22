@@ -21,7 +21,7 @@ export default class DetailsPage extends Component {
 
       // async make get request for contact data (contact info + social media)
       const contactData = await getContactById(token, contact_id);
-      console.log('contact data', contactData);
+      // console.log('contact data', contactData);
 
       // async place in state'
       await this.setState({ contact_data: contactData });
@@ -48,7 +48,7 @@ export default class DetailsPage extends Component {
     }
 
     render() {
-
+      console.log('oauth on details page', this.props.oauth);
       const { token, oauth } = this.props;
       const { isLoading, contact_data, editSwitch } = this.state;
 
