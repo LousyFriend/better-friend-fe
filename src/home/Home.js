@@ -8,7 +8,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Link to='/login'><img src='blank-avatar.jpg' alt='better friend logo'/>   </Link>
+        <Link to='/login'><img src='BetterFriend-logos.jpeg' alt='better friend logo'/>   </Link>
 
       </div>
     );

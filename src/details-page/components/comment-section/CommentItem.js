@@ -22,7 +22,7 @@ export default class CommentItem extends Component {
     return (
       <li class='flex box-border border-2 h-32 p-4 border-black relative shadow-lg'>
 
-        <p class='w-full text-center'>{commentData.comment}</p>
+        <p class='w-full text-center m-auto'>{commentData.comment}</p>
 
         <button onClick={this.handleDeleteComment} class='absolute right-3 top-3'>❌</button>
 

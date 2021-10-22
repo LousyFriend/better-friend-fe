@@ -47,7 +47,7 @@ export default class CommentSection extends Component {
           />
 
           {
-            <ul class='p-1 w-screen justify-center'>
+            <ul class='p-1 w-5/6 m-auto md:w-1/2 justify-center'>
               { comments &&
                 comments.map(item => 
                   <CommentItem 

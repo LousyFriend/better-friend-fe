@@ -14,8 +14,8 @@ export default class ContactInfo extends Component {
 
         {
           image_url === null || image_url === undefined || image_url === ''
-            ? <img src='/blank-avatar.jpg' alt='blank avatar'/>
-            : <img src={ image_url } alt='blank avatar' />
+            ? <img class='object-none m-auto' src='/blank-avatar.jpg' alt='blank avatar'/>
+            : <img class='object-none m-auto' src={ image_url } alt='blank avatar' />
         }
 
         <p class='text-4xl'>{name}</p>

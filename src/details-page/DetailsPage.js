@@ -59,7 +59,7 @@ export default class DetailsPage extends Component {
       let display;
       !editSwitch
         ? display = 
-        <div class='relative'>
+        <div class='relative md:w-1/2 m-auto'>
           <img onClick={this.flipEditSwitch} alt='edit button' src='https://www.freeiconspng.com/uploads/edit-new-icon-22.png' class='absolute bottom-36 right-1 h-5 z-10'/>
           {contact_data.map(obj => < ContactInfo object = { obj } key = { obj.id } />)}
         </div> 
