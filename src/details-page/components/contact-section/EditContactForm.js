@@ -70,8 +70,8 @@ export default class CreatePage extends Component {
       const { name, job_title, image_url, interests, contact_category, phone, linked_in, facebook, gmail, twitter, github, personal_site } = this.state;
 
       return (
-        <div class="bg-white w-screen h-screen flex flex-col items-center justify-center">
-          <form onSubmit={this.handleFormSubmit} class="flex flex-col items-center justify-center bg-betterFriendOrange p-3 rounded-xl text-md lg:text-4xl">
+        <div class="bg-white w-screen flex flex-col items-center justify-center h-auto">
+          <form onSubmit={this.handleFormSubmit} class="flex flex-col items-center border-2 justify-center bg-betterFriendOrange p-3 rounded-xl text-md lg:text-4xl">
             <label class="m-3 text-black font-bold">
                 Name
               <input class="bg-white text-black ml-3 rounded-md" value={name} onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
@@ -137,9 +137,10 @@ export default class CreatePage extends Component {
               <input class="bg-white text-black ml-3 rounded-md" value={personal_site} onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
             </label>
 
-            <button class="bg-black text-white p-3 m-2 rounded-xl font-bold">Edit Contact</button>
+            <button class="bg-black text-white p-3 m-2 rounded-xl font-bold">Save Contact</button>
+            <button class="p-5" onClick={this.handleDeleteClick}>❌</button>
           </form>
-          <button class="p-5" onClick={this.handleDeleteClick}>❌</button>
+
         </div>
       );
     }

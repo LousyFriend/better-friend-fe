@@ -39,9 +39,9 @@ logout = () => {
 
 render() {
   return (
-    <div className="App" class="w-full h-screen">
+    <div className="App" class="w-screen h-screen">
       <Router>
-        <header class='flex text-center bg-black text-md md:text-4xl justify-around items-center text-betterFriendOrange h-12 md:h-24'>
+        <header class='flex text-center bg-black text-md md:text-4xl justify-evenly items-center text-betterFriendOrange h-12 md:h-24'>
           <NavLink
             exact
             activeStyle={{ fontWeight: 'bold' }}
