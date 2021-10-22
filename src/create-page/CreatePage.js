@@ -28,6 +28,8 @@ export default class CreatePage extends Component {
       console.log('state before post', this.state);
       const newContactDataObj = await postContact(token, this.state);
 
+      console.log(newContactDataObj);
+
     // munge data and grab the contact id
       const newContactIdInt = newContactDataObj.contactData.id;
 
