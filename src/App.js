@@ -41,35 +41,35 @@ render() {
   return (
     <div className="App" class="w-full">
       <Router>
-        <header class='flex text-center bg-black text-white align-center justify-center'>
+        <header class='flex text-center bg-black text-md md:text-4xl justify-around items-center text-yellow-500 h-12 md:h-24'>
           <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
+            exact
+            activeStyle={{ fontWeight: 'bold' }}
             to='/'>Home
           </NavLink>   
 
           { 
             this.state.token
               ? <NavLink
-                exact className='links'
-                activeStyle={{ fontSize:'1.5rem' }}
+                exact 
+                activeStyle={{ fontWeight: 'bold' }}
                 to='/contacts'>Contacts
               </NavLink> 
               : <NavLink
-                exact className='links'
-                activeStyle={{ fontSize:'1.5rem' }}
+                exact 
+                activeStyle={{ fontWeight: 'bold' }}
                 to='/Login'>Login
               </NavLink>   
           }
 
           <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
+            exact 
+            activeStyle={{ fontWeight: 'bold' }}
             to='/create'>Create
           </NavLink>        
           <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
+            exact 
+            activeStyle={{ fontWeight: 'bold' }}
             to='/calendar'>Calendar
           </NavLink>        
           {this.state.token 
