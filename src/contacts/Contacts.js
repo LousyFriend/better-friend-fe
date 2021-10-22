@@ -21,7 +21,9 @@ export default class Contacts extends Component {
     const { contactList } = this.state;
 
     return (
-      <div class='grid grid-cols-1 sm:grid-cols-2 gap-6 bg-betterFriendOrange'>
+
+      <div class='grid grid-cols-1 sm:grid-cols-2 gap-6 bg-betterFriendOrange min-h-screen'>
+
         
         {
           contactList.map(contact => <ContactCard {...contact}/>)
