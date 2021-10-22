@@ -16,11 +16,15 @@ export default class CalendarForm extends Component {
   }
   
   componentDidMount = async () => {
+    // Destructure token and contactId from props
     const { token, contactId } = this.props;
-    const response = getContactCalendar(token, contactId);
-    const isEvent = response.event_id
-      ? true
+    // Retrieves contacts(if the exist) and saves to response variable.
+    const response = await getContactCalendar(token, contactId);
+    // isEvent is attempting to resolve wether or not the response event id exists.
+    const isEvent = response.event_id 
+      ? true 
       : false;
+
     await this.setState({ isCalendarEvent: isEvent });
 
   }
@@ -30,6 +34,7 @@ export default class CalendarForm extends Component {
     const { token, oauth, contactId, name } = this.props;
     const { startDate, endDate, freq, isCalendarEvent } = this.state;
     
+    // Totally tubular dude! Look at that regex tho!!!!
     const noHyphenEndDate = endDate.replace(/-/g, '');
     const noHyphenStartDate = startDate.replace(/-/g, '');
 
