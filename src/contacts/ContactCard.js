@@ -22,9 +22,9 @@ export default class ContactCard extends Component {
                   <div class='text-right'>{ job_title }</div>
                 </section>
                 <footer class='flex flex-row absolute right-1 bottom-0'>
-                  <div>{ gmail }gmail </div>
-                  <div>{ phone }phone number </div>
-                  <div>{ linked_in }linkedin </div>
+                  <div>{ gmail } <img class='h-50% w-5%' src='Gmail_Icon.svg' alt='gmail'/> </div>
+                  <div>{ phone }<img class='h-2 w-2' src='phone.svg' alt='telephone'/> </div>
+                  <div>{ linked_in }<img class='h-5 w-5' src='Linkedin.png' alt='linked in'/></div>
                 </footer> </div></div>
           </div>
         }
