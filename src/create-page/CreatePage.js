@@ -40,31 +40,31 @@ export default class CreatePage extends Component {
     
     render() {
       return (
-        <>
-          <form onSubmit={this.handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-            <label>
+        <div class="bg-white w-screen h-screen flex items-center justify-center">
+          <form class="flex flex-col items-center justify-center bg-yellow-500 p-3 rounded-xl text-md lg:text-4xl" onSubmit={this.handleFormSubmit}>
+            <label class="m-3 text-black font-bold" >
                 Name
-              <input onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold" >
                 Job Title
-              <input onChange={async (e) => await this.setState({ job_title: e.target.value })} type='text' required></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ job_title: e.target.value })} type='text' required></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold" >
                 Image URL
-              <input onChange={async (e) => await this.setState({ image_url: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ image_url: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold" >
                 Interests
-              <input onChange={async (e) => await this.setState({ interests: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ interests: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Contact Category
-              <select onChange={async (e) => await this.setState({ contact_category: e.target.value })} required>
+              <select onChange={async (e) => await this.setState({ contact_category: e.target.value })} class="bg-white text-black ml-3 rounded-md p-1" required>
                 <option value="" selected disabled hidden>Choose here</option>
                 <option value='Personal'>Personal</option>
                 <option value='Professional'>Professional</option>
@@ -73,44 +73,44 @@ export default class CreatePage extends Component {
               </select>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 LinkIn
-              <input onChange={async (e) => await this.setState({ linked_in: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ linked_in: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Facebook
-              <input onChange={async (e) => await this.setState({ facebook: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ facebook: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Gmail
-              <input onChange={async (e) => await this.setState({ gmail: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ gmail: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Phone #
-              <input onChange={async (e) => await this.setState({ phone: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ phone: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Twitter
-              <input onChange={async (e) => await this.setState({ twitter: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ twitter: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Github
-              <input onChange={async (e) => await this.setState({ github: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ github: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Personal Site
-              <input onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
             </label>
 
-            <button>Create Contact</button>
+            <button class="bg-black text-white p-3 m-2 rounded-xl font-bold">Create Contact</button>
           </form>
-        </>
+        </div>
       );
     }
 }

@@ -21,7 +21,7 @@ export async function login(email, password) {
       email: email,
       password: password
     });
-    console.log(response.body);
+    
     return response.body.token;
      
   }

@@ -70,29 +70,29 @@ export default class CreatePage extends Component {
       const { name, job_title, image_url, interests, contact_category, phone, linked_in, facebook, gmail, twitter, github, personal_site } = this.state;
 
       return (
-        <>
-          <form onSubmit={this.handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-            <label>
+        <div class="bg-white w-screen h-screen flex flex-col items-center justify-center">
+          <form onSubmit={this.handleFormSubmit} class="flex flex-col items-center justify-center bg-yellow-500 p-3 rounded-xl text-md lg:text-4xl">
+            <label class="m-3 text-black font-bold">
                 Name
-              <input value={name} onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={name} onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Job Title
-              <input value={job_title} onChange={async (e) => await this.setState({ job_title: e.target.value })} type='text' required></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={job_title} onChange={async (e) => await this.setState({ job_title: e.target.value })} type='text' required></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Image URL
-              <input value={image_url} onChange={async (e) => await this.setState({ image_url: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={image_url} onChange={async (e) => await this.setState({ image_url: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Interests
-              <input value={interests} onChange={async (e) => await this.setState({ interests: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={interests} onChange={async (e) => await this.setState({ interests: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Contact Category
               <select value={contact_category} onChange={async (e) => await this.setState({ contact_category: e.target.value })} required>
                 <option value='Personal'>Personal</option> 
@@ -102,45 +102,45 @@ export default class CreatePage extends Component {
               </select>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 LinkIn
-              <input value={linked_in} onChange={async (e) => await this.setState({ linked_in: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={linked_in} onChange={async (e) => await this.setState({ linked_in: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Facebook
-              <input value={facebook} onChange={async (e) => await this.setState({ facebook: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={facebook} onChange={async (e) => await this.setState({ facebook: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Gmail
-              <input value={gmail} onChange={async (e) => await this.setState({ gmail: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={gmail} onChange={async (e) => await this.setState({ gmail: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Phone #
-              <input value={phone} onChange={async (e) => await this.setState({ phone: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={phone} onChange={async (e) => await this.setState({ phone: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Twitter
-              <input value={twitter} onChange={async (e) => await this.setState({ twitter: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={twitter} onChange={async (e) => await this.setState({ twitter: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Github
-              <input value={github} onChange={async (e) => await this.setState({ github: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={github} onChange={async (e) => await this.setState({ github: e.target.value })} type='text'></input>
             </label>
 
-            <label>
+            <label class="m-3 text-black font-bold">
                 Personal Site
-              <input value={personal_site} onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
+              <input class="bg-white text-black ml-3 rounded-md" value={personal_site} onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
             </label>
 
-            <button>Edit Contact</button>
+            <button class="bg-black text-white p-3 m-2 rounded-xl font-bold">Edit Contact</button>
           </form>
-          <button onClick={this.handleDeleteClick}>❌</button>
-        </>
+          <button class="p-5" onClick={this.handleDeleteClick}>❌</button>
+        </div>
       );
     }
 }

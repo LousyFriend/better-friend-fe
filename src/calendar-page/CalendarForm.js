@@ -112,26 +112,29 @@ export default class CalendarForm extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.state.isCalendarEvent ? this.handlePutSubmit : this.handlePostSubmit}>
-          <label>
+      <div class="border-2 flex justify-center">
+        
+        <form onSubmit={this.state.isCalendarEvent ? this.handlePutSubmit : this.handlePostSubmit} class='flex flex-col justify-center items-center border-2 rounded-lg border-black
+         bg-yellow-500 p-2 m-2 lg:p-3 lg:text-5xl'>
+          <div class="text-white">Set desired contact frequency</div>
+          <label class="font-bold m-1 lg:m-3">
             Start Date
-            <input type="date" onChange={(e) => this.setState({ startDate: e.target.value })} required></input>
+            <input class="rounded-md ml-1 text-center" type="date" onChange={(e) => this.setState({ startDate: e.target.value })} required></input>
           </label>
-          <label>
+          <label class="font-bold m-1 lg:m-3">
             End Date
-            <input type="date" onChange={(e) => this.setState({ endDate: e.target.value })} required></input>
+            <input class="rounded-md ml-1 text-center" type="date" onChange={(e) => this.setState({ endDate: e.target.value })} required></input>
           </label>
-          <label>
+          <label class="font-bold m-1 lg:m-3">
             Frequency
-            <select onChange={e => this.setState({ freq: e.target.value })} required>
+            <select class="rounded-md ml-1 text-center" onChange={e => this.setState({ freq: e.target.value })} required>
               <option value="WEEKLY;"> Every Week</option>
               <option value="WEEKLY;INTERVAL=2;">Every 2 Weeks</option>
               <option value="MONTHLY;">Every Month</option>
               <option value="MONTHLY;INTERVAL=2;">Every 2 Months</option>
             </select>
           </label>
-          <button type="submit">Submit</button>
+          <button class="bg-white p-1 lg:p-2 m-1 rounded-md font-bold" type="submit">Submit</button>
         </form>
       </div>
     );
