@@ -20,10 +20,10 @@ export default class CommentForm extends Component {
 
     render() {
       return (
-        <div>
-          <form onSubmit={this.handleCommentSubmit} class="flex flex-col gap-y-2">
-            <textarea onChange={async (e) => await this.setState({ comment: e.target.value })} type='text' required class='box-border h-32 w-1/3 p-4 border-2 border-black'/>
-            <button class='box-border border-2 h-16 w-1/3 border-black p-4'>Post Note</button>
+        <div class='w-screen'>
+          <form onSubmit={this.handleCommentSubmit} class="flex flex-col w-screen gap-y-2">
+            <textarea onChange={async (e) => await this.setState({ comment: e.target.value })} type='text' required class='m-auto box-border h-32 w-5/6 p-4 border-2 border-black'/>
+            <button class=' m-auto box-border border-2 h-16 w-5/6 border-black p-4'>Post Note</button>
           </form>
         </div>
       );
