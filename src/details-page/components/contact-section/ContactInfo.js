@@ -22,19 +22,19 @@ export default class ContactInfo extends Component {
 
         <p class='text-lg'>{job_title}</p>
 
-        <p>Interests: {interests}</p>
+        <p><span class='font-roboMono font-bold'>Interests:</span> {interests}</p>
 
-        <p>Contact Category: {contact_category}</p>
+        <p><span class='font-roboMono font-bold'>Contact Category</span> {contact_category}</p>
 
-        <div class='flex flex-wrap h-14 justify-around'>
+        <div class='flex flex-wrap h-14 justify-around items-center'>
           { phone && <a href={phone}>Phone</a> }
           {/* ❗ THESE LINKS AREN'T WORKING */}
-          { linked_in && <a class='align-center text-center' href={linked_in}>LinkedIn</a> }
-          { facebook && <a href={`${facebook}`}>Facebook</a> }
-          { gmail && <a href={`${gmail}`}>Gmail</a> }
-          { twitter && <a href={`${twitter}`}>Twitter</a> }
-          { github && <a href={`${github}`}>Github</a> }
-          { personal_site && <a href={`${personal_site}`}>personal_site</a> }
+          { linked_in && <a href={linked_in} rel="noopener noreferrer" target='_blank' >LinkedIn</a> }
+          { facebook && <a href={facebook} rel="noopener noreferrer" target='_blank' >Facebook</a> }
+          { gmail && <a href={gmail} rel="noopener noreferrer" target='_blank' >Gmail</a> }
+          { twitter && <a href={twitter} rel="noopener noreferrer" target='_blank' >Twitter</a> }
+          { github && <a href={github} rel="noopener noreferrer" target='_blank' >Github</a> }
+          { personal_site && <a href={personal_site} rel="noopener noreferrer" target='_blank' >personal_site</a> }
         </div>
 
       </div>

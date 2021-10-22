@@ -1,14 +1,20 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
 
     fontFamily: {
-      'sans': ['Roboto', 'sans-serif']
+      'sans': ['Roboto', 'sans-serif'],
+      'roboMono': ['Roboto Mono', 'monospace']
     },
 
     colors: {
-      betterFriendOrange: '#e79215'
+      betterFriendOrange: '#e79215',
+      black: colors.black,
+      yellow: colors.yellow,
+      white: colors.white
     },
 
     screens: {

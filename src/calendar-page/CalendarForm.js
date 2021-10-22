@@ -112,10 +112,10 @@ export default class CalendarForm extends Component {
 
   render() {
     return (
-      <div class="border-2 flex justify-center">
+      <div class="flex justify-center">
         
         <form onSubmit={this.state.isCalendarEvent ? this.handlePutSubmit : this.handlePostSubmit} class='flex flex-col justify-center items-center border-2 rounded-lg border-black
-         bg-yellow-500 p-2 m-2 lg:p-3 lg:text-5xl'>
+         bg-betterFriendOrange p-2 mb-3 w-5/6 md:w-1/2 lg:p-3 lg:text-5xl'>
           <div class="text-white">Set desired contact frequency</div>
           <label class="font-bold m-1 lg:m-3">
             Start Date
@@ -134,7 +134,7 @@ export default class CalendarForm extends Component {
               <option value="MONTHLY;INTERVAL=2;">Every 2 Months</option>
             </select>
           </label>
-          <button class="bg-white p-1 lg:p-2 m-1 rounded-md font-bold" type="submit">Submit</button>
+          <button class="bg-white p-1 lg:p-2 m-1 rounded-md font-bold cursor-pointer" type="submit">Submit</button>
         </form>
       </div>
     );
