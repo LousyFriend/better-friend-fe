@@ -7,6 +7,10 @@ module.exports = {
       'sans': ['Roboto', 'sans-serif']
     },
 
+    colors: {
+      betterFriendOrange: '#e79215'
+    },
+
     screens: {
       'sm': '640px',
                 // => @media (min-width: 640px) { ... }
