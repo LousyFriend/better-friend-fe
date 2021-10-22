@@ -29,7 +29,7 @@ export default class Login extends Component {
         //  send returning token from login post to app.js so it can be passed as props.
          await this.props.handleTokenChange(token);
         //  redirect the user to the contacts page!
-         await this.props.history.push('/contacts');      
+         this.props.history.push('/contacts');      
        }
 
        render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import deleteComment from '../delete-comment-utils.js';
+import deleteComment from './comment-utils/delete-comment-utils.js';
 
 export default class CommentItem extends Component {
 
