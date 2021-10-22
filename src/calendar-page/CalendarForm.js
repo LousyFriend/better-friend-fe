@@ -54,6 +54,7 @@ export default class CalendarForm extends Component {
       'visibility': 'private',
     };
 
+    // This decides wether we make a put or post request to google.
     const response = await isCalendarEvent 
       ? putCalendarEvent(token, oauth, contactId, body)
       : postCalendarEvent(token, oauth, body);
@@ -62,7 +63,8 @@ export default class CalendarForm extends Component {
       event_id: response.id,
       next_date: noHyphenStartDate
     };
-
+    
+    // This is meant to update our SQL backend
     await putCalendarEvent(token, oauth, contactId, updateBody);
 
     this.setState({ freq: 'WEEKLY;' });

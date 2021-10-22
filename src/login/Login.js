@@ -8,18 +8,28 @@ export default class Login extends Component {
       email: ''
     }
      responseGoogle= async (response)=> {
+      //  Grab the access token from the incoming response arguement
        const oauthGoogle = response.tokenObj.access_token;
+      //  Send the new token to app.js state so it can be passed as props
        await this.props.handleState(oauthGoogle);
+      //  set the state to the email and google id values on the response arguement
        await this.setState({ email: response.profileObj.email, password:response.profileObj.googleId });
+      //  send email from current state to app.js state to be passed as props. 
        await this.props.handleEmail(this.state.email); 
-       await this.makeToken();}
+      //  Create a token.
+       await this.makeToken();
+     }
        makeToken= async () => {  
+        //  Grab email from state.
          const email = await this.state.email;
+        //  Grab password from state.
          const password = await this.state.password;
+        //  Attempt to login/signup..
          const token = await login(email, password);
+        //  send returning token from login post to app.js so it can be passed as props.
          await this.props.handleTokenChange(token);
-         await this.props.history.push('/contacts');
-      
+        //  redirect the user to the contacts page!
+         await this.props.history.push('/contacts');      
        }
 
        render() {
