@@ -61,7 +61,6 @@ render() {
                 to='/Login'>Login
               </NavLink>   
           }
-
           <NavLink
             exact 
             activeStyle={{ fontWeight: 'bold' }}
