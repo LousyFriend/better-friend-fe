@@ -38,7 +38,7 @@ export default class CommentSection extends Component {
       const { comments } = this.state;
 
       return (
-        <div class='flex flex-col gap-y-2'>
+        <div class='flex flex-col gap-y-2 w-screen justify-center'>
 
           < CommentForm
             token = { token }
@@ -47,7 +47,7 @@ export default class CommentSection extends Component {
           />
 
           {
-            <ul class='p-1 w-1/3'>
+            <ul class='p-1 w-5/6 m-auto md:w-1/2 justify-center'>
               { comments &&
                 comments.map(item => 
                   <CommentItem 

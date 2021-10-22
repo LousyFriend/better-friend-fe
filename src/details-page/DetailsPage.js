@@ -59,9 +59,9 @@ export default class DetailsPage extends Component {
       let display;
       !editSwitch
         ? display = 
-        <div>
+        <div class='relative w-5/6 md:w-1/2 m-auto'>
+          <img onClick={this.flipEditSwitch} alt='edit button' src='https://www.freeiconspng.com/uploads/edit-new-icon-22.png' class='absolute bottom-36 right-1 h-5 z-10'/>
           {contact_data.map(obj => < ContactInfo object = { obj } key = { obj.id } />)}
-          <button onClick={this.flipEditSwitch}>EDIT BUTTON</button>
         </div> 
         : display = 
         <EditContactForm 
@@ -94,8 +94,6 @@ export default class DetailsPage extends Component {
                 name = { this.state.contact_data[0].name }
               />
           }
-          
-          <iframe title='calendar' src={`https://calendar.google.com/calendar/embed?height=200&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&src=${this.props.email}&color=%23039BE5`} width="350" height="350" frameborder="0" scrolling="no"></iframe>
           
           <CommentSection 
             token = { token }

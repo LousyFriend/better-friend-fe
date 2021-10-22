@@ -12,6 +12,7 @@ import Login from './login/Login.js';
 import Contacts from './contacts/Contacts.js';
 import DetailsPage from './details-page/DetailsPage.js';
 import CreatePage from './create-page/CreatePage.js';
+import CalendarPage from './calendar-page/CalendarPage.js';
 const TOKEN = 'TOKEN';
 
 export default class App extends Component {
@@ -37,65 +38,82 @@ logout = () => {
 }
 
 render() {
-  console.log(this.state.oauthGoogle);
   return (
-    <div className="App">
+    <div className="App" class="w-full">
       <Router>
-        <header class='flex text-center bg-black text-white align-center justify-center'>
+        <header class='flex text-center bg-black text-md md:text-4xl justify-around items-center text-yellow-500 h-12 md:h-24'>
           <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
+            exact
+            activeStyle={{ fontWeight: 'bold' }}
             to='/'>Home
-          </NavLink>        
-          { this.state.token
-            ? <NavLink
-              exact className='links'
-              activeStyle={{ fontSize:'1.5rem' }}
-              to='/contacts'>Contacts
-            </NavLink> 
-            : <NavLink
-              exact className='links'
-              activeStyle={{ fontSize:'1.5rem' }}
-              to='/Login'>Login
-            </NavLink>   
+          </NavLink>   
+
+          { 
+            this.state.token
+              ? <NavLink
+                exact 
+                activeStyle={{ fontWeight: 'bold' }}
+                to='/contacts'>Contacts
+              </NavLink> 
+              : <NavLink
+                exact 
+                activeStyle={{ fontWeight: 'bold' }}
+                to='/Login'>Login
+              </NavLink>   
           }
+
           <NavLink
-            exact className='links'
-            activeStyle={{ fontSize:'1.5rem' }}
+            exact 
+            activeStyle={{ fontWeight: 'bold' }}
             to='/create'>Create
+          </NavLink>        
+          <NavLink
+            exact 
+            activeStyle={{ fontWeight: 'bold' }}
+            to='/calendar'>Calendar
           </NavLink>        
           {this.state.token 
             ? <button onClick={this.logout}>Logout</button>
             : <button onClick={'/login'}></button> 
           }
-          
         </header>
+
         <Switch>
           <Route path="/" exact
             render={routerProps => (
               <Home {...routerProps}/>
             )}
           />
+
           <Route path="/login" exact
             render={routerProps => (
               <Login handleEmail={this.handleEmail} handleState={this.handleState} handleTokenChange={this.handleTokenChange} {...routerProps}/>
             )}
           />
+
           <Route path="/contacts" exact
             render={(routerProps) => this.state.token
               ? <Contacts token={this.state.token} {...routerProps} />
               : <Redirect to='/Login' /> } 
             
           />
+
           <Route path="/details/:id" exact
             render={routerProps => this.state.token
               ? <DetailsPage email={this.state.email} token={this.state.token} oauth={this.state.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />
+
           <Route path="/create" exact
             render={routerProps => this.state.token
               ? <CreatePage token={this.state.token} {...routerProps}/>
+              : <Redirect to='/Login' />
+            }
+          />
+          <Route path="/calendar" exact
+            render={routerProps => this.state.token
+              ? <CalendarPage email={this.state.email} token={this.state.token} oauth={this.state.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />

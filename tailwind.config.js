@@ -2,6 +2,15 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+
+    fontFamily: {
+      'sans': ['Roboto', 'sans-serif']
+    },
+
+    colors: {
+      betterFriendOrange: '#e79215'
+    },
+
     screens: {
       'sm': '640px',
                 // => @media (min-width: 640px) { ... }
