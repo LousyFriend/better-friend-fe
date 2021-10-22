@@ -17,13 +17,15 @@ export default class CalendarForm extends Component {
   }
   
   componentDidMount = async () => {
+    // Destructure token and contactId from props
     const { token, contactId } = this.props;
+    // Retrieves contacts(if the exist) and saves to response variable.
     const response = await getContactCalendar(token, contactId);
-    await console.log(response[0].event_id);
-    const isEvent = await response[0].event_id
-      ? true
+    // isEvent is attempting to resolve wether or not the response event id exists.
+    const isEvent = response[0].event_id 
+      ? true 
       : false;
-    console.log(isEvent);
+
     await this.setState({ isCalendarEvent: isEvent });
 
   }
@@ -33,6 +35,7 @@ export default class CalendarForm extends Component {
     const { token, oauth, contactId, name } = this.props;
     const { startDate, endDate, freq, isCalendarEvent } = this.state;
     
+    // Totally tubular dude! Look at that regex tho!!!!
     const noHyphenEndDate = endDate.replace(/-/g, '');
     const noHyphenStartDate = startDate.replace(/-/g, '');
 
@@ -54,6 +57,7 @@ export default class CalendarForm extends Component {
 
     console.log(isCalendarEvent);
 
+    // This decides wether we make a put or post request to google.
     const response = await isCalendarEvent 
       ? putCalendarEvent(token, oauth, contactId, body)
       : postCalendarEvent(token, oauth, body);
