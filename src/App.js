@@ -41,7 +41,7 @@ render() {
   return (
     <div className="App">
       <Router>
-        <header style={{ display: 'flex', alignItems: 'center', backgroundColor: 'black', color: 'white' }}>
+        <header class='flex text-center bg-black text-white align-center justify-center'>
           <NavLink
             exact className='links'
             activeStyle={{ fontSize:'1.5rem' }}

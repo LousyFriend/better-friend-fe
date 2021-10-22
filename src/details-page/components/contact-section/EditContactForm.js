@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import deleteContact from '../delete-contact-utils.js';
-import putContact from '../put-contact-utils.js';
-// import postContact from './create-page-utils.js';
+import deleteContact from './contact-utils/delete-contact-utils.js';
+import putContact from './contact-utils/put-contact-utils.js';
+
+// Goal of this component:
+// Create a form that can be used in detailed page.
+//  - ✔ Has controlled inputs
+//      - ✔ Needs contactData from props
+//      - ✔ Await Set state with contactData on async componentDidMount.
+//      - ✔ Each input has a value attribute assigned to the appropriate state property.
+//      - ✔ Each input manipulates state.
+//  - ✔ Needs a function from props which can be called to hit the editSwitch and reload updated contact info and pass it down to the form again. 
 
 export default class CreatePage extends Component {
     state={
@@ -19,62 +27,48 @@ export default class CreatePage extends Component {
       personal_site: ''
     }
 
-    // Goal of this component:
-    // Create a form that can be used in detailed page.
-    //  - ✔ Has controlled inputs
-    //      - ✔ Needs contactData from props
-    //      - ✔ Await Set state with contactData on async componentDidMount.
-    //      - ✔ Each input has a value attribute assigned to the appropriate state property.
-    //      - ✔ Each input manipulates state.
-    //  - ✔ Needs a function from props which can be called to hit the editSwitch and reload updated contact info and pass it down to the form again. 
 
     componentDidMount = async () => {
+      // destructure contactDataObj from props.
       const { contactDataObj } = this.props;
-
+      //  set contactDataObj into state.
       await this.setState({ ...contactDataObj });
-
     }
+
 
     handleFormSubmit = async (e) => {
     // prevent form defaults
       e.preventDefault();
-
     // destructure token from props.
       const { token, flipEditSwitch, contact_id, retrieveContactData } = this.props;
-
     // call put function here and pass it the state obj & token
       await putContact(token, contact_id, this.state);
-
+    // call retrieveContactData to update the DOM with new data.
       retrieveContactData();
-
-    // call flipEditSwitch
+    // call flipEditSwitch to hide the edit form
       flipEditSwitch();
-
-    // 🟡 call retrieveContactData here if contact data doesn't update on details page after the edit switch is flipped above on line ~48 
     }
 
+
     handleDeleteClick = async () => {
-
       // destructure token and contact_id from props.
-      const { token, contact_id } = this.props;
-
+      const { token, contact_id, redirectUser } = this.props;
       // prompts user to confirm deletion.
       // eslint-disable-next-line no-restricted-globals
       const confirmDelete = confirm('Deleting contacts is permanent. Are you sure?');
-
       // if user canceled stop.
       if (!confirmDelete) return;
-      
       // if user didn't cancel delete the contact.
       await deleteContact(token, contact_id);
-
-      // ❗ NOT WORKING - redirect user to detailspage/:id
-      // this.props.history.push('/contacts');
+      // redirects user to /contacts as there is no longer a contact to display on the details page.
+      redirectUser();
     }
     
     render() {
-      console.log('contact data in state at time of form render', this.state);
+
+      // Destructure everything out of state!
       const { name, job_title, image_url, interests, contact_category, phone, linked_in, facebook, gmail, twitter, github, personal_site } = this.state;
+
       return (
         <>
           <form onSubmit={this.handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>

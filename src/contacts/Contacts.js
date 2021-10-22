@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import { getContacts } from './contacts-request.js';
 import ContactCard from './ContactCard.js';
@@ -21,8 +21,8 @@ export default class Contacts extends Component {
     const { contactList } = this.state;
 
     return (
-      <div>
-        <Link to={'/create'}><button>Create Page</button></Link>
+      <div class='grid grid-cols-1 lg:grid-cols-2 gap-6 bg-yellow-500'>
+        
         {
           contactList.map(contact => <ContactCard {...contact}/>)
         }
