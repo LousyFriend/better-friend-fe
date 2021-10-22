@@ -12,6 +12,7 @@ import Login from './login/Login.js';
 import Contacts from './contacts/Contacts.js';
 import DetailsPage from './details-page/DetailsPage.js';
 import CreatePage from './create-page/CreatePage.js';
+import CalendarPage from './calendar-page/CalendarPage.js';
 const TOKEN = 'TOKEN';
 
 export default class App extends Component {
@@ -64,6 +65,11 @@ render() {
             activeStyle={{ fontSize:'1.5rem' }}
             to='/create'>Create
           </NavLink>        
+          <NavLink
+            exact className='links'
+            activeStyle={{ fontSize:'1.5rem' }}
+            to='/calendar'>Calendar
+          </NavLink>        
           {this.state.token 
             ? <button onClick={this.logout}>Logout</button>
             : <button onClick={'/login'}></button> 
@@ -96,6 +102,12 @@ render() {
           <Route path="/create" exact
             render={routerProps => this.state.token
               ? <CreatePage token={this.state.token} {...routerProps}/>
+              : <Redirect to='/Login' />
+            }
+          />
+          <Route path="/calendar" exact
+            render={routerProps => this.state.token
+              ? <CalendarPage email={this.state.email} token={this.state.token} oauth={this.state.oauthGoogle} {...routerProps}/>
               : <Redirect to='/Login' />
             }
           />

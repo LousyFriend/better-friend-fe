@@ -95,8 +95,6 @@ export default class DetailsPage extends Component {
               />
           }
           
-          <iframe title='calendar' src={`https://calendar.google.com/calendar/embed?height=200&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&src=${this.props.email}&color=%23039BE5`} width="350" height="350" frameborder="0" scrolling="no"></iframe>
-          
           <CommentSection 
             token = { token }
             contact_id = { contact_id }
