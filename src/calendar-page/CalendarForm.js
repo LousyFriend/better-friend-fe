@@ -19,15 +19,15 @@ export default class CalendarForm extends Component {
   componentDidMount = async () => {
     // Destructure token and contactId from props
     const { token, contactId } = this.props;
-    // Retrieves contacts(if the exist) and saves to response variable.
+
+    // Retrieves calendar event for calendar (if they exist) and saves to response variable.
     const response = await getContactCalendar(token, contactId);
-    // isEvent is attempting to resolve wether or not the response event id exists.
+    // isEvent is attempting to resolve whether or not the response event id exists.
     const isEvent = response[0].event_id 
       ? true 
       : false;
 
     await this.setState({ isCalendarEvent: isEvent });
-
   }
 
   handleSubmit = async (e) => {
@@ -55,9 +55,8 @@ export default class CalendarForm extends Component {
       'visibility': 'private',
     };
 
-    console.log(isCalendarEvent);
 
-    // This decides wether we make a put or post request to google.
+    // This decides whether we make a put or post request to google.
     const response = await isCalendarEvent 
       ? putCalendarEvent(token, oauth, contactId, body)
       : postCalendarEvent(token, oauth, body);
@@ -67,6 +66,7 @@ export default class CalendarForm extends Component {
       next_date: noHyphenStartDate
     };
 
+    // This is meant to update our SQL backend
     await putContactCalendar(token, contactId, updateBody);
 
     this.setState({ freq: 'WEEKLY;' });
