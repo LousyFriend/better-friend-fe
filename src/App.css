@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
+.App{
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -13,7 +13,11 @@ main {
   background: #FAF0EA;
 }
 
+<<<<<<< HEAD
 /* .links {
+=======
+.links {
+>>>>>>> 4f435dfc773c4878868dc5a2b90009eb9e96757b
   padding: 15px;
   margin: 15px;
   display: flex;
