@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { postCalendarEvent } from './calendar-post-request.js';
 import { putCalendarEvent } from './calendar-put-request.js';
 import { getContactCalendar } from './contact-calendar-get-request.js';
+import { putContactCalendar } from './contact-calendar-put-request.js';
 
 export default class CalendarForm extends Component {
   state = {
@@ -17,10 +18,12 @@ export default class CalendarForm extends Component {
   
   componentDidMount = async () => {
     const { token, contactId } = this.props;
-    const response = getContactCalendar(token, contactId);
-    const isEvent = response.event_id
+    const response = await getContactCalendar(token, contactId);
+    await console.log(response[0].event_id);
+    const isEvent = await response[0].event_id
       ? true
       : false;
+    console.log(isEvent);
     await this.setState({ isCalendarEvent: isEvent });
 
   }
@@ -49,6 +52,8 @@ export default class CalendarForm extends Component {
       'visibility': 'private',
     };
 
+    console.log(isCalendarEvent);
+
     const response = await isCalendarEvent 
       ? putCalendarEvent(token, oauth, contactId, body)
       : postCalendarEvent(token, oauth, body);
@@ -58,7 +63,7 @@ export default class CalendarForm extends Component {
       next_date: noHyphenStartDate
     };
 
-    await putCalendarEvent(token, oauth, contactId, updateBody);
+    await putContactCalendar(token, contactId, updateBody);
 
     this.setState({ freq: 'WEEKLY;' });
   }
