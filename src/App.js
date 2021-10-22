@@ -41,7 +41,7 @@ render() {
   return (
     <div className="App" class="w-full h-screen">
       <Router>
-        <header class='flex text-center bg-black text-md md:text-4xl justify-around items-center text-yellow-500 h-12 md:h-24'>
+        <header class='flex text-center bg-black text-md md:text-4xl justify-around items-center text-betterFriendOrange h-12 md:h-24'>
           <NavLink
             exact
             activeStyle={{ fontWeight: 'bold' }}

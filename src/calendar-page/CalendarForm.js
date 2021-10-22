@@ -115,7 +115,7 @@ export default class CalendarForm extends Component {
       <div class="border-2 flex justify-center">
         
         <form onSubmit={this.state.isCalendarEvent ? this.handlePutSubmit : this.handlePostSubmit} class='flex flex-col justify-center items-center border-2 rounded-lg border-black
-         bg-yellow-500 p-2 m-2 lg:p-3 lg:text-5xl'>
+         bg-betterFriendOrange p-2 m-2 lg:p-3 lg:text-5xl'>
           <div class="text-white">Set desired contact frequency</div>
           <label class="font-bold m-1 lg:m-3">
             Start Date

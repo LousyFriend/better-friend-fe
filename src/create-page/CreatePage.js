@@ -41,7 +41,7 @@ export default class CreatePage extends Component {
     render() {
       return (
         <div class="bg-white w-screen h-screen flex items-center justify-center">
-          <form class="flex flex-col items-center justify-center bg-yellow-500 p-3 rounded-xl text-md lg:text-4xl" onSubmit={this.handleFormSubmit}>
+          <form class="flex flex-col items-center justify-center bg-betterFriendOrange p-3 rounded-xl text-md lg:text-4xl" onSubmit={this.handleFormSubmit}>
             <label class="m-3 text-black font-bold" >
                 Name
               <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>

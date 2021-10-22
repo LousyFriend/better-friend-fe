@@ -1,3 +1,6 @@
+const { yellow } = require('tailwindcss/colors');
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -7,9 +10,12 @@ module.exports = {
       'sans': ['Roboto', 'sans-serif']
     },
 
-    // colors: {
-    //   betterFriendOrange: '#e79215'
-    // },
+    colors: {
+      betterFriendOrange: '#e79215',
+      black: colors.black,
+      yellow: colors.yellow,
+      white: colors.white
+    },
 
     screens: {
       'sm': '640px',
