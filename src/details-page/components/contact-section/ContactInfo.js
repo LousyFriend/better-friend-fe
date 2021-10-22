@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 
 export default class ContactInfo extends Component {
   render() {
@@ -28,6 +29,7 @@ export default class ContactInfo extends Component {
         <div class='flex flex-wrap h-14 justify-around'>
           { phone && <a href={phone}>Phone</a> }
           {/* ❗ THESE LINKS AREN'T WORKING */}
+          <ThreeDRotation />
           { linked_in && <a class='align-center text-center' href={linked_in}>LinkedIn</a> }
           { facebook && <a href={`${facebook}`}>Facebook</a> }
           { gmail && <a href={`${gmail}`}>Gmail</a> }
