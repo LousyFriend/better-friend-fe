@@ -21,7 +21,7 @@ export default class CalendarForm extends Component {
     // Retrieves contacts(if the exist) and saves to response variable.
     const response = await getContactCalendar(token, contactId);
     // isEvent is attempting to resolve wether or not the response event id exists.
-    const isEvent = response.event_id 
+    const isEvent = response[0].event_id 
       ? true 
       : false;
 
