@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors');
-
+// ooo, extra config files! always the hallmark of a truly ambituous project :)
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'

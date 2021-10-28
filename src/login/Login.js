@@ -7,6 +7,8 @@ export default class Login extends Component {
       password: '',
       email: ''
     }
+
+    // such complex stuff going on here! nice work puzzling all of this out :-D
      responseGoogle= async (response)=> {
       //  Grab the access token from the incoming response arguement
        const oauthGoogle = response.tokenObj.access_token;

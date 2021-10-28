@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import postContact from './create-page-utils.js';
 
+// a little util Component like this might be nice (in a separate file, but written here to make it easier to grok)
+function Input({ name, handler }) {
+  return  <label class="m-3 text-black font-bold">
+    {name}
+    <input class="bg-white text-black ml-3 rounded-md" onChange={handler} type='text'></input>
+  </label>
+}
+
 export default class CreatePage extends Component {
     state={
       name: '',
@@ -38,76 +46,37 @@ export default class CreatePage extends Component {
       this.props.history.push(`/details/${newContactIdInt}`);
     }
     
+    // this weird "function that returns a function" might add some worthwhile DRYness. Note that it takes in a key and returns a function that takes in an event, which is the function signature we want in an event handler
+    makeChangeHandler = key => e => this.setState({ [key]: e.target.value });
+
     render() {
       return (
         <div class="bg-white w-screen h-screen flex items-center justify-center my-5">
           <form class="flex flex-col items-center justify-center bg-betterFriendOrange p-3 rounded-xl text-md lg:text-4xl h-auto" onSubmit={this.handleFormSubmit}>
-            <label class="m-3 text-black font-bold" >
-                Name
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ name: e.target.value })} type='text' required></input>
-            </label>
-
-            <label class="m-3 text-black font-bold" >
-                Job Title
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ job_title: e.target.value })} type='text' required></input>
-            </label>
-
-            <label class="m-3 text-black font-bold" >
-                Image URL
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ image_url: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold" >
-                Interests
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ interests: e.target.value })} type='text'></input>
-            </label>
-
+            <Input name='Name' handler={this.makeChangeHandler('name')} />
+            <Input name='Job Title' handler={this.makeChangeHandler('job_title')} />
+            <Input name='Image URL' handler={this.makeChangeHandler('image_url')} />
+            <Input name='Interests' handler={this.makeChangeHandler('interests')} />
             <label class="m-3 text-black font-bold">
                 Contact Category
-              <select onChange={async (e) => await this.setState({ contact_category: e.target.value })} class="bg-white text-black ml-3 rounded-md p-1" required>
-                <option value="" selected disabled hidden>Choose here</option>
-                <option value='Personal'>Personal</option>
-                <option value='Professional'>Professional</option>
-                <option value='Family'>Family</option>
-                <option value='Other'>Other</option>
+              <select 
+                onChange={this.makeChangeHandler('contact_category')} 
+                class="bg-white text-black ml-3 rounded-md p-1" 
+                required>
+                  <option value="" selected disabled hidden>Choose here</option>
+                  <option value='Personal'>Personal</option>
+                  <option value='Professional'>Professional</option>
+                  <option value='Family'>Family</option>
+                  <option value='Other'>Other</option>
               </select>
             </label>
-
-            <label class="m-3 text-black font-bold">
-                LinkIn
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ linked_in: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Facebook
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ facebook: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Gmail
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ gmail: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Phone #
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ phone: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Twitter
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ twitter: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Github
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ github: e.target.value })} type='text'></input>
-            </label>
-
-            <label class="m-3 text-black font-bold">
-                Personal Site
-              <input class="bg-white text-black ml-3 rounded-md" onChange={async (e) => await this.setState({ personal_site: e.target.value })} type='text'></input>
-            </label>
-
+            <Input name='LinkedIn' handler={this.makeChangeHandler('linked_in')} />
+            <Input name='Facebook' handler={this.makeChangeHandler('facebook')} />
+            <Input name='Gmail' handler={this.makeChangeHandler('gmail')} />
+            <Input name='Phone' handler={this.makeChangeHandler('phone')} />
+            <Input name='Twitter' handler={this.makeChangeHandler('twitter')} />
+            <Input name='Github' handler={this.makeChangeHandler('github')} />
+            <Input name='Personal Site' handler={this.makeChangeHandler('personal_site')} />
             <button class="bg-black text-white p-3 m-2 rounded-xl font-bold">Create Contact</button>
           </form>
         </div>

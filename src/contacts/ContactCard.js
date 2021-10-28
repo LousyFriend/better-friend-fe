@@ -12,7 +12,8 @@ export default class ContactCard extends Component {
             <div class='w-auto md:w-1/2 align-left p-4 flex-1 md:p-10 m-0 grid grid-cols-2  justify-start relative'>
               <div>
                 {
-                  image_url === null || image_url === undefined || image_url === ''
+                  // why not just !image_url?
+                  !image_url
                     ? <img class='object-left rounded-lg object-contain w-1/2 h-3/4 absolute left-2 top-2 ' src='blank-avatar.jpg' alt='blank avatar'/>
                     : <img class='object-center rounded-lg object-contain w-1/2 h-3/4 absolute left-2 top-2' src={ image_url } alt='blank avatar'></img>
                 }
@@ -23,9 +24,9 @@ export default class ContactCard extends Component {
                   <div class=''>{ job_title }</div>
                 </section>
                 <footer class='flex justify-center items-center'>
-                  <div>{ gmail ? <img class='h-5 w-5' src='gmail-icon.png' alt='gmail'/> : '' } </div> 
-                  <div>{ phone ? <img class='h-5 w-5' src='phone.png' alt='telephone'/> : '' } </div>
-                  <div>{ linked_in ? <img class='h-5 w-5' src='Linkedin.png' alt='linked in'/> : '' } </div>
+                  <div>{ gmail && <img class='h-5 w-5' src='gmail-icon.png' alt='gmail'/> } </div> 
+                  <div>{ phone && <img class='h-5 w-5' src='phone.png' alt='telephone'/> } </div>
+                  <div>{ linked_in && <img class='h-5 w-5' src='Linkedin.png' alt='linked in'/> } </div>
                 </footer> 
               </div>
             </div>

@@ -15,24 +15,23 @@ export default class DetailsPage extends Component {
 
     retrieveContactData = async () => {
       // Grabs contact_id from the react-router-dom url params
+      // set isLoading state to true
+      await this.setState({ isLoading: true });
+
       const contact_id = Number(this.props.match.params.id);
       // destructures token from props
       const { token } = this.props;
       // async make get request for contact data (contact info + social media)
       const contactData = await getContactById(token, contact_id);
+              // set isLoading state to false
 
       // async place in state'
-      await this.setState({ contact_data: contactData });
+      await this.setState({ contact_data: contactData, isLoading: false });
     }
 
     componentDidMount = async () => {
       try {
-        // set isLoading state to true
-        await this.setState({ isLoading: true });
-        // call retrieveContactData
         await this.retrieveContactData();
-        // set isLoading state to false
-        await this.setState({ isLoading: false });
       } catch (error) {
         console.log(error);
       }
@@ -56,15 +55,12 @@ export default class DetailsPage extends Component {
 
       // Determines what to display to page based on editSwitch state
       // https://reactjs.org/docs/conditional-rendering.html
-      let display;
-      !editSwitch
-        ? display = 
-        <div class='relative w-5/6 md:w-1/2 m-auto'>
+      const display = !editSwitch
+        ? <div class='relative w-5/6 md:w-1/2 m-auto'>
           <img onClick={this.flipEditSwitch} alt='edit button' src='https://www.freeiconspng.com/uploads/edit-new-icon-22.png' class='absolute bottom-36 right-1 h-5 z-10'/>
           {contact_data.map(obj => < ContactInfo object = { obj } key = { obj.id } />)}
         </div> 
-        : display = 
-        <EditContactForm 
+        : <EditContactForm 
           token = { token } 
           contactDataObj = { contact_data[0] } 
           retrieveContactData = {this.retrieveContactData}
